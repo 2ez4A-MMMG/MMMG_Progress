@@ -1,0 +1,86 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1904661494036620}
+  m_IsPrefabParent: 1
+--- !u!1 &1904661494036620
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4196020156379392}
+  - component: {fileID: 114997645984584252}
+  - component: {fileID: 114848195377355256}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4196020156379392
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1904661494036620}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.45310414, y: -1.0179734, z: 2.915214}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114848195377355256
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1904661494036620}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5eb741213fde5ee4899675c66a1d3911, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  boardScript: {fileID: 0}
+--- !u!114 &114997645984584252
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1904661494036620}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63fa9ebf818c8b241b15417becabbc97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  columns: 4
+  rows: 4
+  roadBlocksCount:
+    minimum: 1
+    maximum: 3
+  extraTipsCount:
+    minimum: 1
+    maximum: 3
+  randomEventsCount:
+    minimum: 1
+    maximum: 3
+  shortcutCount:
+    minimum: 1
+    maximum: 3
+  destination: {fileID: 1014964251172186, guid: 0b343f2503ac79b44ad8b58af912feb0,
+    type: 2}
+  roadTiles:
+  - {fileID: 1981739424520792, guid: cefbf66bb7a676145a4c345a6ab826ff, type: 2}
+  outerWallTiles:
+  - {fileID: 1253154819781046, guid: 393fde0a50497914a989db7c1f03e139, type: 2}
