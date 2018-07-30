@@ -66,21 +66,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   columns: 4
   rows: 4
-  roadBlocksCount:
-    minimum: 1
-    maximum: 3
-  extraTipsCount:
-    minimum: 1
-    maximum: 3
-  randomEventsCount:
-    minimum: 1
-    maximum: 3
-  shortcutCount:
-    minimum: 1
-    maximum: 3
-  destination: {fileID: 1014964251172186, guid: 0b343f2503ac79b44ad8b58af912feb0,
-    type: 2}
   roadTiles:
   - {fileID: 1981739424520792, guid: cefbf66bb7a676145a4c345a6ab826ff, type: 2}
   outerWallTiles:
   - {fileID: 1253154819781046, guid: 393fde0a50497914a989db7c1f03e139, type: 2}
+  destination: {fileID: 1014964251172186, guid: 0b343f2503ac79b44ad8b58af912feb0,
+    type: 2}
+  roadBlocksTiles: {fileID: 1800629485568884, guid: 7d2d8096afb8a2e4b828871b227d8ec0,
+    type: 2}
+  extraTipsTiles: {fileID: 1095244349506784, guid: d10ec8db52933784c9f1ab9ca65a710e,
+    type: 2}
+  randomEventsTiles: {fileID: 1006106845802008, guid: 13102aa140a721146a7a0785dde2a7b3,
+    type: 2}
+  shortcutTiles: {fileID: 1377113886951940, guid: 09befa5ed385c454292545228df59045,
+    type: 2}
+  speechBubbleTiles: {fileID: 1257908961621410, guid: c829850dd2ed81f4a96083f2fb32eeb1,
+    type: 2}
+  playerPrefab: {fileID: 1675418437486054, guid: 82033869a490915468bc1883bc97c25b,
+    type: 2}

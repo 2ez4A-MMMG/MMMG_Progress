@@ -9,6 +9,12 @@ public class GameManager : MonoBehaviour {
 
 	private int level = 1;
 
+	private int dayCount; //to calculate the day
+	private int targetSalary; //target salary for three days to determine the winning condition
+	private bool gameClear; //to determine the player has won or lost
+
+	//public int salaryRecord;
+
 	// Use this for initialization
 	void Awake () {
 		if (instance == null)
@@ -25,6 +31,11 @@ public class GameManager : MonoBehaviour {
 	void InitGame()
 	{
 		boardScript.SetupScene(level);
+	}
+
+	public void GameOver()
+	{
+
 	}
 	
 	// Update is called once per frame
