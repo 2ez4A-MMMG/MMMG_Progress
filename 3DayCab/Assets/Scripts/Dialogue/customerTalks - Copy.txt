@@ -1,12 +1,12 @@
 [title=Customer1_Talk1_START]
-*Customer1*: (whispers) Yes, I got it, I’ll be there shortly.
+*Customer1*: (whispers) Yes, I got it, I'll be there shortly.
 *Customer1*: *beep*
 *Customer1*: Excuse me, could you hurry up? I have an urgent meeting soon.
 [title=Customer1_Talk1_END]
 
 [title=Customer1_Talk2_START]
 *Customer1*: This place can be crowded at times, eh?
-*Customer1*: Beware not to bump into any <color=*highlightColor*>roadblocks</color>, lad. I don’t want to spend more time on traffic than I already do.
+*Customer1*: Beware not to bump into any <color=*highlightColor*>roadblocks</color>, lad. I don't want to spend more time on traffic than I already do.
 [title=Customer1_Talk2_END]
 
 [title=Customer1_Talk3_START]
@@ -24,12 +24,12 @@
 
 [title=Customer1_Talk5_START]
 *Customer1*: (sigh)
-*Customer1*: Lad, remember the last time I said about a company’s stock I invested in?
-*Customer1*: Turns out it’s nothing more than a scam......
+*Customer1*: Lad, remember the last time I said about a company's stock I invested in?
+*Customer1*: Turns out it's nothing more than a scam......
 *Customer1*: ......and now all that money......all in for just a damn third-rate prank......
 *Customer1*: ......hahahaGahahAhAhaHahaHAHAHAHA!!!!
 //[The car starts to zigzagging around]
-*Customer1*: Let mE take the WHeel! I’d rather DiE than 2 hUmiLIate mySElf Over thiS sHItty prAnK that RuiNEd my lifE!!!
+*Customer1*: Let mE take the WHeel! I'd rather DiE than 2 hUmiLIate mySElf Over thiS sHItty prAnK that RuiNEd my lifE!!!
 //InGame>[screen fades out to black, sound of car crash is heard, then an explosion]
 [title=Customer1_Talk5_END]
 
@@ -39,39 +39,39 @@
 [title=Customer2_Talk1_END]
 
 [title=Customer2_Talk2_START]
-*Customer2*: I hope I won’t be late for today’s class too......
-*Customer2*: You don’t mind if we go a little faster? There should be a <color=*highlightColor*>shortcut</color> or something that we could use.
+*Customer2*: I hope I won't be late for today's class too......
+*Customer2*: You don't mind if we go a little faster? There should be a <color=*highlightColor*>shortcut</color> or something that we could use.
 [title=Customer2_Talk2_END]
 
 [title=Customer2_Talk3_START]
 *Customer2*: Now that I think of it, having a cab-driving job is probably not too bad of an idea.
-*Customer2*: I mean, if you’re lucky, you could even hit on pretty girls like me, right?
+*Customer2*: I mean, if you're lucky, you could even hit on pretty girls like me, right?
 [title=Customer2_Talk3_END]
 
 [title=Customer2_Talk4_START]
 *Customer2*: Thank you for the ride, handsome.
-*Customer2*: If you don’t mind, here’s some tips for you. Let’s say it’s a bonus for driving a pretty customer like me.
+*Customer2*: If you don't mind, here’s some tips for you. Let's say it's a bonus for driving a pretty customer like me.
 //InGame>[Obtained $2000]
 [title=Customer2_Talk4_END]
 
 [title=Customer2_Talk5_START]
 *Customer2*: Hi there, handsome~
 *Customer2*: So, about the money you took last time…...you saw the message in it too, right?
-*Customer2*: So, I assume you’re ok with the proposal. Let us start, then......
+*Customer2*: So, I assume you're ok with the proposal. Let us start, then......
 //InGame>[Sound of knife drawn out is heard]
 //InGame>[The car starts to zigzagging around, then stops midway on the road]
-*Customer2*: That face…...it seems like you don’t really know the deal?
+*Customer2*: That face…...it seems like you don't really know the deal?
 *Customer2*: ThEN agAiN, u sHOuld ALreaDy kNEw It tHe moMeNt U sEe a stUdeNT HaVIng SO mucH moNEy…...hEHehEhE.
 //InGame>[screen fades out to black, sound of flesh ripping plays in the background, as if a creepy surgery is undergoing (+ occasional screams)]
 [title=Customer2_Talk5_END]
 
 [title=Customer3_Talk1_START]
 *Customer3*: Hello there, sonny. How do you do?
-*Customer3*: It is a nice weather today, isn’t it?
+*Customer3*: It is a nice weather today, isn't it?
 [title=Customer3_Talk1_END]
 
 [title=Customer3_Talk2_START]
-*Customer3*: Oh, that building brings me back. You don’t mind a detour to there, right sonny?
+*Customer3*: Oh, that building brings me back. You don't mind a detour to there, right sonny?
 *Customer3*: If you like, I could pay you some <color=*highlightColor*>extra tips</color> for stopping over there for awhile.
 [title=Customer3_Talk2_END]
 
@@ -84,13 +84,13 @@
 [title=Customer3_Talk4_START]
 *Customer3*: It was a nice ride, sonny.
 *Customer3*: I sure hope we could meet someday again, that would be great.
-*Customer3*: Here’s a little something for a hardworking youngsters like you. Don’t be shy, take it.
+*Customer3*: Here's a little something for a hardworking youngsters like you. Don't be shy, take it.
 InGame>[Obtained $3000]
 [title=Customer3_Talk4_END]
 
 [title=Customer3_Talk5_START]
 *Customer3*: Hello there, sonny.
-*Customer3*: You don’t mind we take another detour today, do you?
+*Customer3*: You don't mind we take another detour today, do you?
 *Customer3*: ......
 *Customer3*: You really remind me so much of my grandson......
 *Customer3*: ......that goddamn bastard who keeps extorting money from me just because he wants it for his so-called ‘job’!!
@@ -100,22 +100,22 @@ InGame>[Obtained $3000]
 
 [title=Customer4_Talk1_START]
 *Customer4*: Oh god, I am so nervous right now......
-*Customer4*: ......ah, my bad. Just mumbling to myself, don’t mind me.
+*Customer4*: ......ah, my bad. Just mumbling to myself, don't mind me.
 [title=Customer4_Talk1_END]
 
 [title=Customer4_Talk2_START]
 *Customer4*: Ah, I probably did the correct thing by calling the cabs, the route seems confusing......
-*Customer4*: It looks like <color=*highlightColor*>random things</color> would happen at times in some roads. Hopefully it’s shortcuts instead of roadblocks and such......
+*Customer4*: It looks like <color=*highlightColor*>random things</color> would happen at times in some roads. Hopefully it's shortcuts instead of roadblocks and such......
 [title=Customer4_Talk2_END]
 
 [title=Customer4_Talk3_START]
 *Customer4*: Well, the job this time seems promising.
-*Customer4*: It’s a bit nearer than expected, so it should be fine.
+*Customer4*: It's a bit nearer than expected, so it should be fine.
 [title=Customer4_Talk3_END]
 
 [title=Customer4_Talk4_START]
 *Customer4*: I think I finally landed on a good job, it offers a nice pay too.
-*Customer4*: Oh, and thank you for the help, here’s a little extra for helping me out.
+*Customer4*: Oh, and thank you for the help, here's a little extra for helping me out.
 //InGame>[Obtained $2000.00]
 [title=Customer4_Talk4_END]
 

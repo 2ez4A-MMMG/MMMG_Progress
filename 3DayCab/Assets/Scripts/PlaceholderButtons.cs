@@ -24,7 +24,28 @@ public class PlaceholderButtons : MonoBehaviour {
     //player/customer dropping off from car
 
     //display chat
+    public void StartTalking()
+    {
+        LevelManager.LvMg.canTalk = true;
+    }
+    //not sure if needed tho
+    public void StopTalking()
+    {
+        LevelManager.LvMg.canTalk = false;
+    }
+
     //show overlay cutscene animation
     //in-game animations
     //fadeout to gameover Credits (Laer Swen car radio annoucement)
+
+    //DEBUG: remove all player prefs
+    public void DeleteAllPlayerPrefs()
+    {
+        DialogueManager.DialMg.DELETEALL_PlayerPrefs();
+    }
+    //DEBUG: reset only the chatCounts
+    public void ResetAllChatCounts()
+    {
+        DialogueManager.DialMg.RESET_AllTalkCount();
+    }
 }

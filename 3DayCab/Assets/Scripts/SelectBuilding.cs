@@ -18,9 +18,4 @@ public class SelectBuilding : MonoBehaviour {
         GameObject newBuilding = Instantiate(buildingList[buildingIndex], transform.position, transform.rotation);
         newBuilding.transform.parent = this.transform;
 	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 }
