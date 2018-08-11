@@ -47,7 +47,7 @@ public class BoardManager : MonoBehaviour {
 				GameObject toInstantiate = roadTiles[UnityEngine.Random.Range(0, roadTiles.Length)]; //randomly select one of the sprite from the list
 				if(x==0&&y==0)
 				{
-					Instantiate(playerPrefab, new Vector3(x, y, -0.05f), Quaternion.identity); 
+					Instantiate(playerPrefab, new Vector3(x, y, -0.0002f), Quaternion.identity); 
 				}
 				if (x == -1 || x == columns || y == -1 || y == rows)
 				{
