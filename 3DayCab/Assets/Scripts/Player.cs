@@ -4,13 +4,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour {
 	
-	private Vector3 start_pos;
-	private Vector3 end_pos;
-	public float movement;
-	public float distance;
-	private float inputFreeze=2f;
-	private float inputTimer;
-	private float range = 0.25f;
+	private Vector2 end_pos;
 
 	// Use this for initialization
 	void Start () {
@@ -19,47 +13,17 @@ public class Player : MonoBehaviour {
 
 	private void Update()
 	{
-		start_pos = transform.position;
-		//inputTimer += Time.deltaTime;
-		//Debug.Log(inputTimer);
-
-		//if (inputTimer < inputFreeze)
-		//{
-		//	Debug.Log("Cant move");
-		//	return;
-		//}
-
-		
-		if (Input.GetKey(KeyCode.W))
-		{
-			end_pos += new Vector3(0, range, 0);				
-		}
-		else if (Input.GetKey(KeyCode.S))
-		{
-			end_pos += new Vector3(0, -range, 0);				
-		}
-		else if (Input.GetKey(KeyCode.A))
-		{
-			end_pos += new Vector3(-range, 0, 0);				
-		}
-		else if (Input.GetKey(KeyCode.D))
-		{
-			end_pos += new Vector3(range, 0, 0);				
-		}
-			
-		transform.position = Vector3.Lerp(start_pos, end_pos, 1*Time.deltaTime);
-		
-		
-		
+		if (Input.GetKeyDown("a"))
+			end_pos += Vector2.left;
+		if (Input.GetKeyDown("d"))
+			end_pos += Vector2.right;
+		if (Input.GetKeyDown("w"))
+			end_pos += Vector2.up;
+		if (Input.GetKeyDown("s"))
+			end_pos += Vector2.down;
+		transform.position = Vector2.Lerp(transform.position, end_pos, 1f * Time.deltaTime);
 	}
 		
 	
-	private void OnTriggerEnter(Collider other)
-	{
-		if(other.tag=="Destination")
-		{
-
-		}
-		//if(other.tag=="")
-	}
+	
 }
