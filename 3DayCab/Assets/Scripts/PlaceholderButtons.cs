@@ -41,7 +41,7 @@ public class PlaceholderButtons : MonoBehaviour {
     //DEBUG: remove all player prefs
     public void DeleteAllPlayerPrefs()
     {
-        DialogueManager.DialMg.DELETEALL_PlayerPrefs();
+        PlayerPrefs.DeleteAll();
     }
     //DEBUG: reset only the chatCounts
     public void ResetAllChatCounts()
