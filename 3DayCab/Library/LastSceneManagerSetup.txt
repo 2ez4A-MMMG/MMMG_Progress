@@ -1,4 +1,8 @@
 sceneSetups:
+<<<<<<< HEAD
 - path: Assets/Scenes/Test1.unity
+=======
+- path: Assets/Scenes/CarRadioRolls.unity
+>>>>>>> be65733a4229d0b29d2031147cef3fa96bb31be6
   isLoaded: 1
   isActive: 1

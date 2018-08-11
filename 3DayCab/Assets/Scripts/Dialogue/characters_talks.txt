@@ -26,6 +26,8 @@
 *Customer1*: Lad, remember the last time I said about a company's stock I invested in?
 *Customer1*: Turns out it's nothing more than a scam......
 *Customer1*: ......and now all that money......all in for just a damn third-rate prank......
+[title=Cus1Talk5_CutScene1Start]
+[title=Cus1Talk5_CutScene1End]
 *Customer1*: ......hahahaGahahAhAhaHahaHAHAHAHA!!!!
 *Customer1*: Let mE take the WHeel! I'd rather DiE than 2 hUmiLIate mySElf Over thiS sHItty prAnK that RuiNEd my lifE!!!
 [title=Customer1_Talk5_END]
