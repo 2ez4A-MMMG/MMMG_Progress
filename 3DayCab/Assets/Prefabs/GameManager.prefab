@@ -9,18 +9,18 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1904661494036620}
+  m_RootGameObject: {fileID: 1162344684689184}
   m_IsPrefabParent: 1
---- !u!1 &1904661494036620
+--- !u!1 &1162344684689184
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4196020156379392}
-  - component: {fileID: 114997645984584252}
-  - component: {fileID: 114848195377355256}
+  - component: {fileID: 4937995565354766}
+  - component: {fileID: 114804215784496662}
+  - component: {fileID: 114932827154462336}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -28,12 +28,12 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4196020156379392
+--- !u!4 &4937995565354766
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1904661494036620}
+  m_GameObject: {fileID: 1162344684689184}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.45310414, y: -1.0179734, z: 2.915214}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -41,24 +41,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114848195377355256
+--- !u!114 &114804215784496662
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1904661494036620}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5eb741213fde5ee4899675c66a1d3911, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  boardScript: {fileID: 0}
---- !u!114 &114997645984584252
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1904661494036620}
+  m_GameObject: {fileID: 1162344684689184}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 63fa9ebf818c8b241b15417becabbc97, type: 3}
@@ -84,3 +72,15 @@ MonoBehaviour:
     type: 2}
   playerPrefab: {fileID: 1675418437486054, guid: 82033869a490915468bc1883bc97c25b,
     type: 2}
+--- !u!114 &114932827154462336
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1162344684689184}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5eb741213fde5ee4899675c66a1d3911, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  boardScript: {fileID: 0}

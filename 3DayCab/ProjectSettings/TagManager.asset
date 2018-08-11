@@ -5,6 +5,12 @@ TagManager:
   serializedVersion: 2
   tags:
   - boundary
+  - Block
+  - Chat
+  - Destination
+  - Event
+  - Shortcut
+  - Tips
   layers:
   - Default
   - TransparentFX

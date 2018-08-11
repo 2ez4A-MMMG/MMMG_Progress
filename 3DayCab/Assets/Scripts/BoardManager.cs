@@ -47,7 +47,8 @@ public class BoardManager : MonoBehaviour {
 				GameObject toInstantiate = roadTiles[UnityEngine.Random.Range(0, roadTiles.Length)]; //randomly select one of the sprite from the list
 				if(x==0&&y==0)
 				{
-					Instantiate(playerPrefab, new Vector3(x, y, -0.0002f), Quaternion.identity); 
+					GameObject player = Instantiate(playerPrefab, new Vector3(x, y, -0.0002f), Quaternion.identity) as GameObject;
+					player.transform.SetParent(boardHolder);
 				}
 				if (x == -1 || x == columns || y == -1 || y == rows)
 				{
@@ -76,11 +77,12 @@ public class BoardManager : MonoBehaviour {
 		{
 			Vector3 randomPosition = RandomPosition();
 			randomPosition.z = -0.0001f; //make it slightly in front of the road tile
-			Instantiate(spawnObject, randomPosition, Quaternion.identity);
+			GameObject instance = Instantiate(spawnObject, randomPosition, Quaternion.identity) as GameObject;
+			instance.transform.SetParent(boardHolder);
 		}
 	}
 
-	public void SetupScene(int level)
+	public void SetupScene()
 	{
 		BoardSetup();
 		InitialiseList();
@@ -90,6 +92,13 @@ public class BoardManager : MonoBehaviour {
 		SpawnObject(extraTipsTiles, 2);
 		SpawnObject(randomEventsTiles, 1);
 		SpawnObject(speechBubbleTiles, 2);
+	}
+
+	public void ResetBoard()
+	{
+		Destroy(GameObject.Find("Board"));
+
+		SetupScene();
 	}
 
 }

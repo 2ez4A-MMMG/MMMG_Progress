@@ -1,45 +1,58 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour {
 
 	public BoardManager boardScript;
-	public static GameManager instance = null;
+	public static GameManager managerInstance = null;
 
-	private int level = 1;
+	public Text dayCountText,stepsCountText;
+	public int dayCount, stepsCountMax = 5, stepsCount;
 
-	private int dayCount; //to calculate the day
-	private int targetSalary; //target salary for three days to determine the winning condition
-	private bool gameClear; //to determine the player has won or lost
+	public int tips, tipsMax = 100, tipsMin = 50;	
 
-	//public int salaryRecord;
 
+	#region SceneSetup
 	// Use this for initialization
 	void Awake () {
-		if (instance == null)
-			instance = this;
-		else if (instance != this)
+		if (managerInstance == null)
+			managerInstance = this;
+		else if (managerInstance != this)
 			Destroy(gameObject);
 
 		DontDestroyOnLoad(gameObject); //make sure it doesn't destroy when scene change
 		boardScript = GetComponent<BoardManager>();
 		InitGame();
-
 	}
 
-	void InitGame()
+	public void InitGame()
 	{
-		boardScript.SetupScene(level);
+		boardScript.SetupScene();
 	}
+	#endregion
 
-	public void GameOver()
+	private void Update()
 	{
+		if (stepsCount >= stepsCountMax)
+		{
+			stepsCount = 0;
+			dayCount += 1;
+			//Debug.Log("NewDay");
+			if (dayCount >= 3)
+			{
+				//Debug.Log("GameOver");
+			}
+		}
 
-	}
-	
-	// Update is called once per frame
-	void Update () {
 		
 	}
+
+	public void TipsGenerator()
+	{
+		tips = Random.Range(tipsMin, tipsMax);
+	}
+
+
 }
