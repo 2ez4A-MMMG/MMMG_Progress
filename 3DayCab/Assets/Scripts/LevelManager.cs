@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour {
 
@@ -13,25 +14,36 @@ public class LevelManager : MonoBehaviour {
     public int Day;
     public int Money;
     public int ProgressBar;
+    public bool GameClear;
+    public bool GameOver;
 
     [Header ("game main var's limits")]
     public int DaysLimit = 3;
     public int EarnTarget = 10000;
     public int ProgressBarLimit = 30;
 
-    [Header("linked vars")]
+    [Header("linked vars + gameObjs")]
     public bool canMove;
-    //public bool InitiateTalk;
     public bool canTalk;
-    public GameObject StatusPopup; //??
+    //UI parts
+    public GameObject StatusPopup; //display Status popup
+    public GameObject FadeScreen;
+    //audio parts
+    public AudioSource sfx_source;
+    public AudioClip carCrash_sfx;
+    public AudioClip explosion_sfx;
+    //gameObject parts
+    public GameObject Taxi;
+    //public GameObject Customer;
 
     [Header("Customer1(BUsinessMan) Variables")] //businessman
+    //public GameObject Customer1Model;
     public int Customer1Pay_Min = 300;
     public int Customer1Pay_Max = 500;
     public int Customer1ExtraTips_Min = 50;
     public int Customer1ExtraTips_Max = 100;
     public int Customer1GoodEndPay = 2500;
-    [SerializeField] private int C1_DisplayedPay;//set the prize before customer selection
+    [SerializeField] private int C1_DisplayedPay;//set the price before customer selection
 
     [Header("Customer2(FStudent) Variables")] //female Student
     public int Customer2Pay_Min = 200;
@@ -62,8 +74,10 @@ public class LevelManager : MonoBehaviour {
         LvMg = this;
         canMove = false;
         canTalk = false;
+        GameClear = GameOver = false;
         StatusPopup.SetActive(false);
         //only works when scene is forcefully reset
+
         //if cannot reteive saved day count, set a new one
         if (!PlayerPrefs.HasKey("DayCount")) {
             PlayerPrefs.SetInt("DayCount", 1);
@@ -93,6 +107,7 @@ public class LevelManager : MonoBehaviour {
         PlayerPrefs.SetInt("MoneyEarned", Money); //only occur after ride ends
     }
 
+    //Animation Controller - status popup
     public void PopupSlideIn(string popup_text, string AnimName)
     {
         StartCoroutine(SpawnPopUp(popup_text, AnimName));
@@ -101,7 +116,7 @@ public class LevelManager : MonoBehaviour {
     IEnumerator SpawnPopUp(string popup_text, string playAnim)
     {
         StatusPopup.SetActive(true);
-        Text PopUpText = StatusPopup.GetComponent<Text>();
+        Text PopUpText = StatusPopup.GetComponentInChildren<Text>();
         PopUpText.text = popup_text;
         Animator PopUpAnim = StatusPopup.GetComponent<Animator>();
         PopUpAnim.Play(playAnim);
@@ -109,4 +124,46 @@ public class LevelManager : MonoBehaviour {
         StatusPopup.SetActive(false);
     }
 
+    //Animation Controller - fade screen
+    public void Fades()
+    {
+        StartCoroutine(Fading());
+    }
+    public IEnumerator Fading()
+    {
+        Animator FadeAnim = FadeScreen.GetComponent<Animator>();
+        FadeAnim.SetBool("Fade", true);
+        yield return new WaitForSeconds(FadeAnim.GetCurrentAnimatorStateInfo(0).length);
+        //SceneManager.LoadScene(name_of_scene);
+    }
+
+    //Animation Controller - taxi model
+    public void ChangeTaxiAnim(string playAnim)
+    {
+        Animator TaxiAnim = Taxi.GetComponent<Animator>();
+        TaxiAnim.Play(playAnim);
+    }
+    public void TaxiIdleAnim()
+    {
+        ChangeTaxiAnim("taxt_idle");
+    }
+    public void TaxiZigZagAnim()
+    {
+        ChangeTaxiAnim("taxi_zigzag");
+    }
+    public void TaxiRamToWall()
+    {
+        ChangeTaxiAnim("taxi_ramToWall");
+    }
+
+    //Audio Controller - playsoundeffectsONCE
+    public void PlaySfxOnce(AudioClip sound)
+    {
+        StartCoroutine(PlayOnce_Sfx(sfx_source, sound));
+    }
+    public IEnumerator PlayOnce_Sfx(AudioSource audiosource, AudioClip sfx)
+    {
+        audiosource.PlayOneShot(sfx);
+        yield return new WaitForSeconds(sfx.length);
+    }
 }
