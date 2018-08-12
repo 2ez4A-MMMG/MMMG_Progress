@@ -53,6 +53,7 @@ public class Player : MonoBehaviour {
 	private void OnTriggerEnter(Collider other)
 	{
 		other.GetComponent<SpriteRenderer>().color= new Color(10f, 10f, 10f,0.5f);
+		other.GetComponent<BoxCollider>().enabled = false;
 		if (other.tag=="Block")
 		{
 			Debug.Log("You triggered road block");
