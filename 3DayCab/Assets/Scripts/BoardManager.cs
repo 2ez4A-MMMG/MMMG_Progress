@@ -19,9 +19,12 @@ public class BoardManager : MonoBehaviour {
 
 	private Transform boardHolder; //collapse everything in here
 	private List<Vector3> gridPositions = new List<Vector3>();
+	public GameObject playerHolder;
 
 	public GameObject playerPrefab;
 	public static BoardManager boardManagerInstance;
+
+	public Vector3 playerInitialPosition;
 
 	private void Awake()
 	{
@@ -54,11 +57,7 @@ public class BoardManager : MonoBehaviour {
 			for (int y=-1; y<rows+1;y++)
 			{
 				GameObject toInstantiate = roadTiles[UnityEngine.Random.Range(0, roadTiles.Length)]; //randomly select one of the sprite from the list
-				if(x==0&&y==0)
-				{
-					GameObject player = Instantiate(playerPrefab, new Vector3(x, y, -0.0002f), Quaternion.identity) as GameObject;
-					player.transform.SetParent(boardHolder);
-				}
+				
 				if (x == -1 || x == columns || y == -1 || y == rows)
 				{
 					toInstantiate = outerWallTiles[UnityEngine.Random.Range(0, outerWallTiles.Length)];
@@ -92,22 +91,50 @@ public class BoardManager : MonoBehaviour {
 	}
 
 	public void SetupScene()
-	{
-		BoardSetup();
-		InitialiseList();
+	{		
+		StartCoroutine(SetupSceneCoroutine());
+		SpawnPlayer();
+	}
+
+	public IEnumerator SetupSceneCoroutine()
+	{		
+		float waitTime = 0.5f;
+		BoardSetup();		
+		yield return new WaitForSeconds(waitTime);
+		InitialiseList();		
+		yield return new WaitForSeconds(waitTime);
 		SpawnObject(destination, 1);
+		yield return new WaitForSeconds(waitTime);
 		SpawnObject(shortcutTiles, 2);
+		yield return new WaitForSeconds(waitTime);
 		SpawnObject(roadBlocksTiles, 2);
+		yield return new WaitForSeconds(waitTime);
 		SpawnObject(extraTipsTiles, 2);
+		yield return new WaitForSeconds(waitTime);
 		SpawnObject(randomEventsTiles, 1);
+		yield return new WaitForSeconds(waitTime);
 		SpawnObject(speechBubbleTiles, 2);
+		yield return new WaitForSeconds(waitTime);		
+		Player.playerInstance.canMove = true;
+		Debug.Log("YOU CAN MOVE NOW");
+		yield return null;
+	}
+
+	public void SpawnPlayer()
+	{
+		playerHolder = Instantiate(playerPrefab, new Vector3(0, 0, -0.0002f), Quaternion.identity) as GameObject;
 	}
 
 	public void ResetBoard()
 	{
+		Player.playerInstance.canMove = false;
+		Player.playerInstance.blockX = 0;
+		Player.playerInstance.blockY = 0;
+		Player.playerInstance.GetComponent<SpriteRenderer>().flipX = false;
 		Destroy(GameObject.Find("Board"));
-
-		SetupScene();
+		playerHolder.transform.position = new Vector3(0, 0, -0.0002f) ;		
+		StartCoroutine(SetupSceneCoroutine());
+		
 	}
 
 

@@ -6,10 +6,19 @@ using UnityEngine.UI;
 public class Player : MonoBehaviour {
 	
 	private float movingDistance=1; // how far the taxi move
-	private int blockX=0,blockY=0; //to restrict the movement of the taxi	
+	public int blockX=0,blockY=0; //to restrict the movement of the taxi, not going beyond the border	
 
 	private int randomNo;//to determine the action after triggering the random event
 	public GameObject gameManager;
+	public static Player playerInstance=null;
+
+	public bool canMove=false;
+
+	private void Awake()
+	{
+		if (playerInstance == null)
+			playerInstance = this;		
+	}
 
 	private void Start()
 	{
@@ -17,32 +26,37 @@ public class Player : MonoBehaviour {
 	}
 	private void Update()
 	{
-		#region UserInput
-		if (Input.GetKeyDown("a") && blockX > 0)
+		if (canMove == true)
 		{
-			transform.Translate(Vector3.left * movingDistance);
-			blockX -= 1;
-			GameManager.managerInstance.stepsCount += 1;
-		}
+			#region UserInput
+			if (Input.GetKeyDown("a") && blockX > 0)
+			{
+				transform.Translate(Vector3.left * movingDistance);
+				blockX -= 1;
+				GetComponent<SpriteRenderer>().flipX = true;
+				GameManager.managerInstance.stepsCount += 1;
+			}
 
-		if (Input.GetKeyDown("d") && blockX < 3)
-		{
-			transform.Translate(Vector3.right  * movingDistance);
-			blockX += 1;
-			GameManager.managerInstance.stepsCount += 1;
-		}
+			if (Input.GetKeyDown("d") && blockX < 3)
+			{
+				transform.Translate(Vector3.right * movingDistance);
+				blockX += 1;
+				GetComponent<SpriteRenderer>().flipX = false;
+				GameManager.managerInstance.stepsCount += 1;
+			}
 
-		if (Input.GetKeyDown("w")&&blockY < 3)
-		{
-			transform.Translate(Vector3.up *  movingDistance);
-			blockY += 1;
-			GameManager.managerInstance.stepsCount += 1;
-		}
-		if (Input.GetKeyDown("s")&&blockY >0)
-		{
-			transform.Translate(Vector3.down *  movingDistance);
-			blockY -= 1;
-			GameManager.managerInstance.stepsCount += 1;
+			if (Input.GetKeyDown("w") && blockY < 3)
+			{
+				transform.Translate(Vector3.up * movingDistance);
+				blockY += 1;
+				GameManager.managerInstance.stepsCount += 1;
+			}
+			if (Input.GetKeyDown("s") && blockY > 0)
+			{
+				transform.Translate(Vector3.down * movingDistance);
+				blockY -= 1;
+				GameManager.managerInstance.stepsCount += 1;
+			}
 		}
 		#endregion
 

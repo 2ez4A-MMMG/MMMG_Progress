@@ -25,7 +25,10 @@ public class GameManager : MonoBehaviour {
 		DontDestroyOnLoad(gameObject); //make sure it doesn't destroy when scene change
 		boardScript = GetComponent<BoardManager>();
 		InitGame();
+
 	}
+
+	
 
 	public void InitGame()
 	{
@@ -35,6 +38,7 @@ public class GameManager : MonoBehaviour {
 
 	private void Start()
 	{
+		
 		dayCountText.text = "Day " + dayCount;
 	}
 
