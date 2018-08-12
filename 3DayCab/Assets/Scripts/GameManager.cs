@@ -8,8 +8,8 @@ public class GameManager : MonoBehaviour {
 	public BoardManager boardScript;
 	public static GameManager managerInstance = null;
 
-	public Text dayCountText,stepsCountText;
-	public int dayCount, stepsCountMax = 5, stepsCount;
+	public Text dayCountText;
+	public int dayCount=1, stepsCountMax = 30, stepsCount;
 
 	public int tips, tipsMax = 100, tipsMin = 50;	
 
@@ -33,13 +33,18 @@ public class GameManager : MonoBehaviour {
 	}
 	#endregion
 
+	private void Start()
+	{
+		dayCountText.text = "Day " + dayCount;
+	}
+
 	private void Update()
 	{
 		if (stepsCount >= stepsCountMax)
 		{
 			stepsCount = 0;
 			dayCount += 1;
-			//Debug.Log("NewDay");
+			dayCountText.text="Day "+dayCount;
 			if (dayCount >= 3)
 			{
 				//Debug.Log("GameOver");
