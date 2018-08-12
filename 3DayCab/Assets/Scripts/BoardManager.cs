@@ -21,6 +21,15 @@ public class BoardManager : MonoBehaviour {
 	private List<Vector3> gridPositions = new List<Vector3>();
 
 	public GameObject playerPrefab;
+	public static BoardManager boardManagerInstance;
+
+	private void Awake()
+	{
+		if (boardManagerInstance==null)
+		{
+			boardManagerInstance = this;
+		}
+	}
 
 	void InitialiseList()
 	{
@@ -100,5 +109,7 @@ public class BoardManager : MonoBehaviour {
 
 		SetupScene();
 	}
+
+
 
 }

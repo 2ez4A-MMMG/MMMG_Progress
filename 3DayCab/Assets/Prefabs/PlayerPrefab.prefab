@@ -81,8 +81,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bc3563c0875fc84597a167279e5354e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dayCountText: {fileID: 0}
-  stepsCountText: {fileID: 0}
+  gameManager: {fileID: 0}
 --- !u!212 &212760116399113496
 SpriteRenderer:
   m_ObjectHideFlags: 1
