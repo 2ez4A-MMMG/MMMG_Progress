@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PlaceholderButtons : MonoBehaviour {
 
@@ -20,9 +21,6 @@ public class PlaceholderButtons : MonoBehaviour {
         }
     }
 
-    //player/customer walking towards car
-    //player/customer dropping off from car
-
     //display chat
     public void StartTalking()
     {
@@ -34,18 +32,66 @@ public class PlaceholderButtons : MonoBehaviour {
         LevelManager.LvMg.canTalk = false;
     }
 
-    //show overlay cutscene animation
-    //in-game animations
-    //fadeout to gameover Credits (Laer Swen car radio annoucement)
+    //select customers
+    public void SelectC1_BusinessMan()
+    {
+        DialogueManager.DialMg.RideCus01 = true;
+        LevelManager.LvMg.oneTime = true;
+    }
+    public void SelectC2_FemaleStudent()
+    {
+        DialogueManager.DialMg.RideCus02 = true;
+        LevelManager.LvMg.oneTime = true;
+    }
+    public void SelectC3_OldMan()
+    {
+        DialogueManager.DialMg.RideCus03 = true;
+        LevelManager.LvMg.oneTime = true;
+    }
+    public void SelectC4_PartTimer()
+    {
+        DialogueManager.DialMg.RideCus04 = true;
+        LevelManager.LvMg.oneTime = true;
+    }
 
-    //DEBUG: remove all player prefs
+    public void ExitLevel()
+    {
+        StartCoroutine(FadeLoader.FadeSLoad.Fading(FadeLoader.FadeSLoad.TitleScreen));
+    }
+    
+
+    //Title Screen
+    public void StartGame()
+    {
+        StartCoroutine(FadeLoader.FadeSLoad.Fading(FadeLoader.FadeSLoad.GameScreen));
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
+    public void Open_Close_Panel(GameObject panel)
+    {
+        if (!panel.activeSelf)
+            panel.SetActive(true);
+        else if (panel.activeSelf)
+            panel.SetActive(false);
+    }
+
+    //not debug anymore: remove all player prefs & reset game
     public void DeleteAllPlayerPrefs()
     {
         PlayerPrefs.DeleteAll();
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
     //DEBUG: reset only the chatCounts
     public void ResetAllChatCounts()
     {
         DialogueManager.DialMg.RESET_AllTalkCount();
+    }
+    //DEBUG- test game over screen
+    public void loadGameOverScreen()
+    {
+        StartCoroutine(FadeLoader.FadeSLoad.Fading(FadeLoader.FadeSLoad.CarRadioScreen));
     }
 }
