@@ -1,6 +1,6 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\RPGTALK\ReadMe.txt">
+  <MonoDevelop.Ide.Workbench>
     <Files>
       <File FileName="Assets\RPGTALK\ReadMe.txt" Line="1" Column="1" />
     </Files>
