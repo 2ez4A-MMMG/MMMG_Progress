@@ -12,7 +12,7 @@ public class Player : MonoBehaviour {
 	public GameObject gameManager;
 	public static Player playerInstance=null;
 
-	public bool canMove=false;
+	//public bool canMove=false;
 
 	private void Awake()
 	{
@@ -26,38 +26,37 @@ public class Player : MonoBehaviour {
 	}
 	private void Update()
 	{
-		if (canMove == true)
+		
+		#region UserInput
+		if (Input.GetKeyDown("a") && blockX > 0)
 		{
-			#region UserInput
-			if (Input.GetKeyDown("a") && blockX > 0)
-			{
-				transform.Translate(Vector3.left * movingDistance);
-				blockX -= 1;
-				GetComponent<SpriteRenderer>().flipX = true;
-				GameManager.managerInstance.stepsCount += 1;
-			}
-
-			if (Input.GetKeyDown("d") && blockX < 3)
-			{
-				transform.Translate(Vector3.right * movingDistance);
-				blockX += 1;
-				GetComponent<SpriteRenderer>().flipX = false;
-				GameManager.managerInstance.stepsCount += 1;
-			}
-
-			if (Input.GetKeyDown("w") && blockY < 3)
-			{
-				transform.Translate(Vector3.up * movingDistance);
-				blockY += 1;
-				GameManager.managerInstance.stepsCount += 1;
-			}
-			if (Input.GetKeyDown("s") && blockY > 0)
-			{
-				transform.Translate(Vector3.down * movingDistance);
-				blockY -= 1;
-				GameManager.managerInstance.stepsCount += 1;
-			}
+			transform.Translate(Vector3.left * movingDistance);
+			blockX -= 1;
+			GetComponent<SpriteRenderer>().flipX = true;
+			GameManager.managerInstance.stepsCount += 1;
 		}
+
+		if (Input.GetKeyDown("d") && blockX < 3)
+		{
+			transform.Translate(Vector3.right * movingDistance);
+			blockX += 1;
+			GetComponent<SpriteRenderer>().flipX = false;
+			GameManager.managerInstance.stepsCount += 1;
+		}
+
+		if (Input.GetKeyDown("w") && blockY < 3)
+		{
+			transform.Translate(Vector3.up * movingDistance);
+			blockY += 1;
+			GameManager.managerInstance.stepsCount += 1;
+		}
+		if (Input.GetKeyDown("s") && blockY > 0)
+		{
+			transform.Translate(Vector3.down * movingDistance);
+			blockY -= 1;
+			GameManager.managerInstance.stepsCount += 1;
+		}
+		
 		#endregion
 
 
@@ -66,44 +65,46 @@ public class Player : MonoBehaviour {
 
 	private void OnTriggerEnter(Collider other)
 	{
-		other.GetComponent<SpriteRenderer>().color= new Color(10f, 10f, 10f,0.5f);
-		other.GetComponent<BoxCollider>().enabled = false;
+		//if (other.GetComponent<SpriteRenderer>() != null)
+		//	other.GetComponent<SpriteRenderer>().color= new Color(10f, 10f, 10f,0.5f);		
 		if (other.tag=="Block")
 		{
+			Destroy(other.gameObject);
 			Debug.Log("You triggered road block");
 			GameManager.managerInstance.stepsCount += 2;
 		}
 
 		if (other.tag == "Chat")
 		{
+			Destroy(other.gameObject);
 			Debug.Log("TALK SHIT");
 		}
 
 		if (other.tag == "Destination")
 		{
+			Destroy(other.gameObject);
 			Debug.Log("You've reached ur destination");
 			GameManager.managerInstance.boardScript.ResetBoard();
 			
 		}
 		if (other.tag == "Event")
 		{
+			Destroy(other.gameObject);
 			Debug.Log("You triggered event");
 			randomNo = Random.Range(0, 4); //0 is normal route, 1 is shortcut, 2 is roadblock, 3 is tips
 			if (randomNo == 1)
-			{
-				other.GetComponent<SpriteRenderer>().sprite = gameManager.GetComponent<BoardManager>().shortcutTiles.GetComponent<SpriteRenderer>().sprite;
+			{				
 				Debug.Log("Shortut Triggered");
 				GameManager.managerInstance.stepsCount -= 2;
 			}
 			else if (randomNo == 2)
-			{
-				other.GetComponent<SpriteRenderer>().sprite = gameManager.GetComponent<BoardManager>().roadBlocksTiles.GetComponent<SpriteRenderer>().sprite;
+			{				
+				
 				Debug.Log("You triggered road block");
 				GameManager.managerInstance.stepsCount += 2;
 			}
 			else if (randomNo == 3)
-			{
-				other.GetComponent<SpriteRenderer>().sprite = gameManager.GetComponent<BoardManager>().extraTipsTiles.GetComponent<SpriteRenderer>().sprite;
+			{				
 				Debug.Log("You got some tipss");
 				GameManager.managerInstance.TipsGenerator();
 			}
@@ -114,11 +115,13 @@ public class Player : MonoBehaviour {
 		}
 		if (other.tag == "Shortcut")
 		{
+			Destroy(other.gameObject);
 			Debug.Log("Shortut Triggered");
 			GameManager.managerInstance.stepsCount -= 2;
 		}
 		if (other.tag == "Tips")
 		{
+			Destroy(other.gameObject);
 			Debug.Log("You got some tipss");
 			GameManager.managerInstance.TipsGenerator();
 		}

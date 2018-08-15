@@ -11,6 +11,8 @@ TagManager:
   - Event
   - Shortcut
   - Tips
+  - Border
+  - FlashTrigger
   layers:
   - Default
   - TransparentFX
