@@ -56,6 +56,8 @@
 *Customer2*: Hi there, handsome~
 *Customer2*: So, about the money you took last time......you saw the message in it too, right?
 *Customer2*: So, I assume you're ok with the proposal. Let us start, then......
+[title=Cus2Talk5_CutScene1Start]
+[title=Cus2Talk5_CutScene1End]
 *Customer2*: That face......it seems like you don't really know the deal?
 *Customer2*: ThEN agAiN, u sHOuld ALreaDy kNEw It tHe moMeNt U sEe a stUdeNT HaVIng SO mucH moNEy......hEHehEhE.
 [title=Customer2_Talk5_END]
@@ -114,7 +116,11 @@
 [title=Customer4_Talk5_START]
 *Customer4*: Ok, ok, this should be ok......
 *Customer4*: Oh, please stop here for a while.
+[title=Cus4Talk5_CutScene1Start]
+[title=Cus4Talk5_CutScene1End]
 *Customer4*: I guess this world does hate me after all......now......
+[title=Cus4Talk5_CutScene2Start]
+[title=Cus4Talk5_CutScene2End]
 *Customer4*: GiVe MEh bACk my dAMn Job!!!
 [title=Customer4_Talk5_END]
 
