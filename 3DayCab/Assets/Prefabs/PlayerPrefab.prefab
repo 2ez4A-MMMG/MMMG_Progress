@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 114071024182706860}
   - component: {fileID: 65370689213851384}
   - component: {fileID: 54088319066117202}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: PlayerPrefab
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -41,7 +41,7 @@ GameObject:
   - component: {fileID: 65577500097169588}
   - component: {fileID: 54889799278910290}
   - component: {fileID: 114428757424172912}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: FlashTrigger
   m_TagString: FlashTrigger
   m_Icon: {fileID: 0}
