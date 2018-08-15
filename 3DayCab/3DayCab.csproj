@@ -320,11 +320,14 @@
     <Compile Include="Assets\Scripts\DialogueManager.cs" />
     <Compile Include="Assets\Scripts\FadeLoader.cs" />
     <Compile Include="Assets\Scripts\FinalBlockCover.cs" />
+    <Compile Include="Assets\Scripts\FlashTrigger.cs" />
     <Compile Include="Assets\Scripts\GameEndDisplay.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\LevelManager.cs" />
+    <Compile Include="Assets\Scripts\MainMenu_Buttons.cs" />
     <Compile Include="Assets\Scripts\PlaceholderButtons.cs" />
     <Compile Include="Assets\Scripts\Player.cs" />
+    <Compile Include="Assets\Scripts\ProgressBar.cs" />
     <Compile Include="Assets\Scripts\ProgressBarManager.cs" />
     <Compile Include="Assets\Scripts\SelectBuilding.cs" />
     <Compile Include="Assets\Scripts\SetResolution.cs" />
