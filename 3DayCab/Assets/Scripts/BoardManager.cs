@@ -54,7 +54,7 @@ public class BoardManager : MonoBehaviour {
 		//create a boarder surrounding all tiles
 		for (int x = -1; x < columns+1 ; x++)
 		{
-			for (int y=-1; y<rows+1;y++)
+			for (int y=0; y<rows;y++)
 			{
 				GameObject toInstantiate = roadTiles[UnityEngine.Random.Range(0, roadTiles.Length)]; //randomly select one of the sprite from the list
 				toInstantiate.GetComponent<SpriteRenderer>().color = Color.black;

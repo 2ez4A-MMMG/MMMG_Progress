@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 212823139435976116}
   - component: {fileID: 65354790204695830}
   - component: {fileID: 54088783316553562}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Shortcut
   m_TagString: Shortcut
   m_Icon: {fileID: 0}

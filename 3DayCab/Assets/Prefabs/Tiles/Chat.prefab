@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 212822531948826688}
   - component: {fileID: 65205378011963886}
   - component: {fileID: 54218242482531768}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Chat
   m_TagString: Chat
   m_Icon: {fileID: 0}
