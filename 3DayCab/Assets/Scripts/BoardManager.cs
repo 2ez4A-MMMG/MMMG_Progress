@@ -57,7 +57,7 @@ public class BoardManager : MonoBehaviour {
 			for (int y=-1; y<rows+1;y++)
 			{
 				GameObject toInstantiate = roadTiles[UnityEngine.Random.Range(0, roadTiles.Length)]; //randomly select one of the sprite from the list
-				
+				toInstantiate.GetComponent<SpriteRenderer>().color = Color.black;
 				if (x == -1 || x == columns || y == -1 || y == rows)
 				{
 					toInstantiate = outerWallTiles[UnityEngine.Random.Range(0, outerWallTiles.Length)];
@@ -84,8 +84,9 @@ public class BoardManager : MonoBehaviour {
 		for (int i = 0; i < spawnCount; i++)
 		{
 			Vector3 randomPosition = RandomPosition();
-			randomPosition.z = -0.0001f; //make it slightly in front of the road tile
+			randomPosition.z = -0.0001f; //make it slightly in front of the road tile			
 			GameObject instance = Instantiate(spawnObject, randomPosition, Quaternion.identity) as GameObject;
+			instance.GetComponent<SpriteRenderer>().color = Color.black;
 			instance.transform.SetParent(boardHolder);
 		}
 	}
@@ -97,25 +98,15 @@ public class BoardManager : MonoBehaviour {
 	}
 
 	public IEnumerator SetupSceneCoroutine()
-	{		
-		float waitTime = 0.5f;
-		BoardSetup();		
-		yield return new WaitForSeconds(waitTime);
-		InitialiseList();		
-		yield return new WaitForSeconds(waitTime);
-		SpawnObject(destination, 1);
-		yield return new WaitForSeconds(waitTime);
-		SpawnObject(shortcutTiles, 2);
-		yield return new WaitForSeconds(waitTime);
-		SpawnObject(roadBlocksTiles, 2);
-		yield return new WaitForSeconds(waitTime);
-		SpawnObject(extraTipsTiles, 2);
-		yield return new WaitForSeconds(waitTime);
-		SpawnObject(randomEventsTiles, 1);
-		yield return new WaitForSeconds(waitTime);
-		SpawnObject(speechBubbleTiles, 2);
-		yield return new WaitForSeconds(waitTime);		
-		Player.playerInstance.canMove = true;
+	{				
+		BoardSetup();				
+		InitialiseList();				
+		SpawnObject(destination, 1);		
+		SpawnObject(shortcutTiles, 2);		
+		SpawnObject(roadBlocksTiles, 2);		
+		SpawnObject(extraTipsTiles, 2);		
+		SpawnObject(randomEventsTiles, 1);		
+		SpawnObject(speechBubbleTiles, 2);				
 		Debug.Log("YOU CAN MOVE NOW");
 		yield return null;
 	}
@@ -126,8 +117,7 @@ public class BoardManager : MonoBehaviour {
 	}
 
 	public void ResetBoard()
-	{
-		Player.playerInstance.canMove = false;
+	{		
 		Player.playerInstance.blockX = 0;
 		Player.playerInstance.blockY = 0;
 		Player.playerInstance.GetComponent<SpriteRenderer>().flipX = false;
