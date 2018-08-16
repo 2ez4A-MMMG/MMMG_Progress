@@ -102,7 +102,7 @@ ModelImporter:
       name: Idle
       takeName: Take 001
       firstFrame: 0
-      lastFrame: 1
+      lastFrame: 24
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -129,7 +129,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Walking
       takeName: Take 001
-      firstFrame: 1
+      firstFrame: 24
       lastFrame: 147
       wrapMode: 0
       orientationOffsetY: 0
@@ -160,7 +160,7 @@ ModelImporter:
       firstFrame: 147
       lastFrame: 148
       wrapMode: 0
-      orientationOffsetY: 0
+      orientationOffsetY: 270
       level: 0
       cycleOffset: 0
       loop: 0
