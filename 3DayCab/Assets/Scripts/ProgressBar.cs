@@ -10,12 +10,12 @@ public class ProgressBar : MonoBehaviour {
 	private void Start()
 	{
 		slider = GetComponent<Slider>();
-		slider.maxValue = GameManager.managerInstance.stepsCountMax;
+		slider.maxValue = LevelManager.LvMg.ProgressBarLimit;
 		
 	}
 
 	private void Update()
 	{
-		slider.value = GameManager.managerInstance.stepsCount;
+		slider.value = LevelManager.LvMg.stepsCount;
 	}
 }

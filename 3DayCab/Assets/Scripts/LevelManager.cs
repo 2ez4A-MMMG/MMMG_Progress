@@ -16,6 +16,7 @@ public class LevelManager : MonoBehaviour {
     public int ProgressBar;
     public bool GameClear;
     public bool GameOver;
+	public int stepsCount;
 
     [Header("game main var's limits")]
     public int DaysLimit = 3;
@@ -178,6 +179,12 @@ public class LevelManager : MonoBehaviour {
                 oneTime = false;
             }
         }
+
+		if(stepsCount>=ProgressBarLimit)
+		{
+			Day += 1;
+			stepsCount = 0;
+		}
 	}
 
     public IEnumerator dayStart()

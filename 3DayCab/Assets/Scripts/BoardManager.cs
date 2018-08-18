@@ -58,7 +58,7 @@ public class BoardManager : MonoBehaviour {
 			{
 				GameObject toInstantiate = roadTiles[UnityEngine.Random.Range(0, roadTiles.Length)]; //randomly select one of the sprite from the list
 				toInstantiate.GetComponent<SpriteRenderer>().color = Color.black;
-				if (x == -1 || x == columns || y == -1 || y == rows)
+				if (x == -1 || x == columns)
 				{
 					toInstantiate = outerWallTiles[UnityEngine.Random.Range(0, outerWallTiles.Length)];
 				}

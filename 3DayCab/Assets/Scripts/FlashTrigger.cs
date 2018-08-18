@@ -6,7 +6,7 @@ public class FlashTrigger : MonoBehaviour {
 
 	private void OnTriggerEnter(Collider other)
 	{
-		if(other.tag!="Border" || other.tag!="")
+		if (other.tag != "Border")
 			other.GetComponent<SpriteRenderer>().color = Color.white;
 	}
 }

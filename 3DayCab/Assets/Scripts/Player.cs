@@ -33,7 +33,7 @@ public class Player : MonoBehaviour {
 			transform.Translate(Vector3.left * movingDistance);
 			blockX -= 1;
 			GetComponent<SpriteRenderer>().flipX = true;
-			GameManager.managerInstance.stepsCount += 1;
+			LevelManager.LvMg.stepsCount += 1;
 		}
 
 		if (Input.GetKeyDown("d") && blockX < 3)
@@ -41,20 +41,20 @@ public class Player : MonoBehaviour {
 			transform.Translate(Vector3.right * movingDistance);
 			blockX += 1;
 			GetComponent<SpriteRenderer>().flipX = false;
-			GameManager.managerInstance.stepsCount += 1;
+			LevelManager.LvMg.stepsCount += 1;
 		}
 
 		if (Input.GetKeyDown("w") && blockY < 3)
 		{
 			transform.Translate(Vector3.up * movingDistance);
 			blockY += 1;
-			GameManager.managerInstance.stepsCount += 1;
+			LevelManager.LvMg.stepsCount += 1;
 		}
 		if (Input.GetKeyDown("s") && blockY > 0)
 		{
 			transform.Translate(Vector3.down * movingDistance);
 			blockY -= 1;
-			GameManager.managerInstance.stepsCount += 1;
+			LevelManager.LvMg.stepsCount += 1;
 		}
 		
 		#endregion
@@ -71,7 +71,7 @@ public class Player : MonoBehaviour {
 		{
 			Destroy(other.gameObject);
 			Debug.Log("You triggered road block");
-			GameManager.managerInstance.stepsCount += 2;
+			LevelManager.LvMg.stepsCount += 2;
 		}
 
 		if (other.tag == "Chat")
@@ -95,18 +95,18 @@ public class Player : MonoBehaviour {
 			if (randomNo == 1)
 			{				
 				Debug.Log("Shortut Triggered");
-				GameManager.managerInstance.stepsCount -= 2;
+				LevelManager.LvMg.stepsCount -= 2;
 			}
 			else if (randomNo == 2)
 			{				
 				
 				Debug.Log("You triggered road block");
-				GameManager.managerInstance.stepsCount += 2;
+				LevelManager.LvMg.stepsCount += 2;
 			}
 			else if (randomNo == 3)
 			{				
 				Debug.Log("You got some tipss");
-				GameManager.managerInstance.TipsGenerator();
+				//GameManager.managerInstance.TipsGenerator();
 			}
 			else
 			{
@@ -117,13 +117,13 @@ public class Player : MonoBehaviour {
 		{
 			Destroy(other.gameObject);
 			Debug.Log("Shortut Triggered");
-			GameManager.managerInstance.stepsCount -= 2;
+			LevelManager.LvMg.stepsCount -= 2;
 		}
 		if (other.tag == "Tips")
 		{
 			Destroy(other.gameObject);
 			Debug.Log("You got some tipss");
-			GameManager.managerInstance.TipsGenerator();
+			//GameManager.managerInstance.TipsGenerator();
 		}
 	}
 
