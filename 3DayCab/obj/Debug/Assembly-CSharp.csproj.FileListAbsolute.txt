@@ -166,3 +166,7 @@ C:\Users\Ang CS\Documents\GitHub\MMMG_Progress\3DayCab\obj\Debug\Assembly-CSharp
 C:\Users\Ang CS\Documents\GitHub\MMMG_Progress\3DayCab\obj\Debug\Assembly-CSharp.csproj.CopyComplete
 C:\Users\Ang CS\Documents\GitHub\MMMG_Progress\3DayCab\obj\Debug\Assembly-CSharp.dll
 C:\Users\Ang CS\Documents\GitHub\MMMG_Progress\3DayCab\obj\Debug\Assembly-CSharp.pdb
+D:\MMMG_Progress\3DayCab\obj\Debug\Assembly-CSharp.csprojAssemblyReference.cache
+D:\MMMG_Progress\3DayCab\obj\Debug\Assembly-CSharp.csproj.CoreCompileInputs.cache
+D:\MMMG_Progress\3DayCab\obj\Debug\Assembly-CSharp.dll
+D:\MMMG_Progress\3DayCab\obj\Debug\Assembly-CSharp.pdb

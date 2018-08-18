@@ -16,7 +16,7 @@ public class LevelManager : MonoBehaviour {
     public int ProgressBar;
     public bool GameClear;
     public bool GameOver;
-	public int stepsCount;
+	
 
     [Header("game main var's limits")]
     public int DaysLimit = 3;
@@ -26,7 +26,7 @@ public class LevelManager : MonoBehaviour {
     [Header("linked vars + gameObjs")]
     public bool canMove;
     public bool canTalk;
-    public bool oneTime = true;
+    public bool oneTime = true;	
 
     //UI parts
     public GameObject StatusPopup; //display Status popup
@@ -164,7 +164,7 @@ public class LevelManager : MonoBehaviour {
             {
                 if (oneTime)
                 {
-                    StartCoroutine(CustomerSelected());
+                    StartCoroutine(CustomerSelected());					
                     Debug.Log("customer selected");
                     oneTime = false;
                 }
@@ -180,11 +180,7 @@ public class LevelManager : MonoBehaviour {
             }
         }
 
-		if(stepsCount>=ProgressBarLimit)
-		{
-			Day += 1;
-			stepsCount = 0;
-		}
+		
 	}
 
     public IEnumerator dayStart()
@@ -274,15 +270,17 @@ public class LevelManager : MonoBehaviour {
         }
         //moves car & then triggers chat
         canMove = true;
-        yield return new WaitForSeconds(2.0f);
-        canTalk = true;
+		Player.playerInstance.canControl = true;
+        //yield return new WaitForSeconds(2.0f);
+		yield return null;
+        //canTalk = true;
     }
 
     public IEnumerator AfterRideProcess()
     {
         dayEnding = true;
-        int pBValue = Random.Range(5, 10);
-        ProgressBar += pBValue; //initial progressValue
+        //int pBValue = Random.Range(5, 10);
+        //ProgressBar += pBValue; //initial progressValue
         PlayerPrefs.SetInt("ProgressBarValue", ProgressBar);
         if (DialogueManager.DialMg.RideCus01)
         {
@@ -328,27 +326,29 @@ public class LevelManager : MonoBehaviour {
             yield return new WaitForSeconds(cus4Anim.GetCurrentAnimatorStateInfo(0).length - closeCarDoor_sfx.length / 2);
             Destroy(Customer4);
         }
-        if (ProgressBar >= ProgressBarLimit)
-        {
-            //car moves, then fades
-            canMove = true;
-            PlayerPrefs.DeleteKey("ProgressBarValue");
-            yield return new WaitForSeconds(1.0f);
-            bgm_source.Stop();
-            //end current day & start new day
-            if (Day == DaysLimit)
-            {
-                if (Money >= EarnTarget)
-                    GameClear = true;
-                else
-                    GameOver = true;
-            } else
-            {
-                PlayerPrefs.SetInt("DayCount", PlayerPrefs.GetInt("DayCount") + 1);
-                StartCoroutine(FadeLoader.FadeSLoad.Fading(SceneManager.GetActiveScene().name));
-            }
-        } //else resumes selection
-        dayEnding = false;
+		
+		if (ProgressBar >= ProgressBarLimit)
+		{
+			//car moves, then fades
+			canMove = true;
+			PlayerPrefs.DeleteKey("ProgressBarValue");
+			yield return new WaitForSeconds(1.0f);
+			bgm_source.Stop();
+			//end current day & start new day
+			if (Day >= DaysLimit)
+			{
+				if (Money >= EarnTarget)
+					GameClear = true;
+				else
+					GameOver = true;
+			}
+			else
+			{
+				PlayerPrefs.SetInt("DayCount", PlayerPrefs.GetInt("DayCount") + 1);
+				StartCoroutine(FadeLoader.FadeSLoad.Fading(SceneManager.GetActiveScene().name));
+			}
+		} //else resumes selection
+		dayEnding = false;
     }
 
     public void ReceiveReward(int amount)

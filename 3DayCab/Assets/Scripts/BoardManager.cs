@@ -19,7 +19,7 @@ public class BoardManager : MonoBehaviour {
 
 	private Transform boardHolder; //collapse everything in here
 	private List<Vector3> gridPositions = new List<Vector3>();
-	public GameObject playerHolder;
+	private GameObject playerHolder;
 
 	public GameObject playerPrefab;
 	public static BoardManager boardManagerInstance;
@@ -107,7 +107,6 @@ public class BoardManager : MonoBehaviour {
 		SpawnObject(extraTipsTiles, 2);		
 		SpawnObject(randomEventsTiles, 1);		
 		SpawnObject(speechBubbleTiles, 2);				
-		Debug.Log("YOU CAN MOVE NOW");
 		yield return null;
 	}
 
@@ -116,13 +115,14 @@ public class BoardManager : MonoBehaviour {
 		playerHolder = Instantiate(playerPrefab, new Vector3(0, 0, -0.0002f), Quaternion.identity) as GameObject;
 	}
 
-	public void ResetBoard()
-	{		
+	public IEnumerator ResetBoard()
+	{
+		playerHolder.transform.position = new Vector3(0, 0, -0.0002f);
 		Player.playerInstance.blockX = 0;
 		Player.playerInstance.blockY = 0;
 		Player.playerInstance.GetComponent<SpriteRenderer>().flipX = false;
-		Destroy(GameObject.Find("Board"));
-		playerHolder.transform.position = new Vector3(0, 0, -0.0002f) ;		
+		yield return new WaitForSeconds(0.5f);
+		Destroy(GameObject.Find("Board"));			
 		StartCoroutine(SetupSceneCoroutine());
 		
 	}

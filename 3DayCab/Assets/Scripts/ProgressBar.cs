@@ -16,6 +16,6 @@ public class ProgressBar : MonoBehaviour {
 
 	private void Update()
 	{
-		slider.value = LevelManager.LvMg.stepsCount;
+		slider.value = LevelManager.LvMg.ProgressBar;
 	}
 }

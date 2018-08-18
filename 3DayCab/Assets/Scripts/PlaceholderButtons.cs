@@ -4,12 +4,12 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class PlaceholderButtons : MonoBehaviour {
+public class PlaceholderButtons : MonoBehaviour {	
 
-    //all these are buttons for showing animations. Nothing more, nothing less
+	//all these are buttons for showing animations. Nothing more, nothing less
 
-    //move the backgrounds
-    public void ChangeBGMove()
+	//move the backgrounds
+	public void ChangeBGMove()
     {
         if (!LevelManager.LvMg.canMove)
         {
@@ -25,6 +25,7 @@ public class PlaceholderButtons : MonoBehaviour {
     public void StartTalking()
     {
         LevelManager.LvMg.canTalk = true;
+		
     }
     //not sure if needed tho
     public void StopTalking()
@@ -37,22 +38,26 @@ public class PlaceholderButtons : MonoBehaviour {
     {
         DialogueManager.DialMg.RideCus01 = true;
         LevelManager.LvMg.oneTime = true;
-    }
+		GameObject.Find("SelectiveDisplay").SetActive(false);
+	}
     public void SelectC2_FemaleStudent()
     {
         DialogueManager.DialMg.RideCus02 = true;
         LevelManager.LvMg.oneTime = true;
-    }
+		GameObject.Find("SelectiveDisplay").SetActive(false);
+	}
     public void SelectC3_OldMan()
     {
         DialogueManager.DialMg.RideCus03 = true;
         LevelManager.LvMg.oneTime = true;
-    }
+		GameObject.Find("SelectiveDisplay").SetActive(false);
+	}
     public void SelectC4_PartTimer()
     {
         DialogueManager.DialMg.RideCus04 = true;
         LevelManager.LvMg.oneTime = true;
-    }
+		GameObject.Find("SelectiveDisplay").SetActive(false);
+	}
 
     public void ExitLevel()
     {

@@ -19,6 +19,8 @@ public class DialogueManager : MonoBehaviour {
     [SerializeField]private bool InitiateTalk;
     public bool GoodEnd = false;
 
+	private GameObject selectiveDisplay;
+
     // Use this for initialization
     void Awake () {
         if (!PlayerPrefs.HasKey("Cus1TalkCount") || !PlayerPrefs.HasKey("Cus2TalkCount") || 
@@ -32,7 +34,11 @@ public class DialogueManager : MonoBehaviour {
         DialMg = this;
         InitiateTalk = true;
     }
-	
+
+	private void Start()
+	{
+		selectiveDisplay= GameObject.Find("SelectiveDisplay");
+	}
 	// Update is called once per frame
 	void Update () {
 		//customer selected
@@ -112,27 +118,27 @@ public class DialogueManager : MonoBehaviour {
     public IEnumerator AfterTalk(int CurrentCusTalkCount, string CustomerTalkCount, int PayMoney, int GoodEndMoney, string badendData)
     {
         //need to show stop car animation first (if not bad end)
-        if (CurrentCusTalkCount < 5)
-        {
-            yield return new WaitForSeconds(1.0f);
-            LevelManager.LvMg.canMove = false;
-            yield return new WaitForSeconds(0.1f);
-            if (GoodEnd) //first check if need to trigger GoodEnd Event (+ money)
-                LevelManager.LvMg.ReceiveReward(PayMoney + GoodEndMoney);
-            else
-                LevelManager.LvMg.ReceiveReward(PayMoney); //then resume with normal payouts (no pay at BadEnd)
-            yield return new WaitForSeconds(0.5f);
-            StartCoroutine(LevelManager.LvMg.AfterRideProcess());
-            yield return new WaitForSeconds(1.0f);
-            if (RideCus01)
-                RideCus01 = false;
-            if (RideCus02)
-                RideCus02 = false;
-            if (RideCus03)
-                RideCus03 = false;
-            if (RideCus04)
-                RideCus04 = false;
-        }
+        //if (CurrentCusTalkCount < 5)
+        //{
+        //    yield return new WaitForSeconds(1.0f);
+        //    LevelManager.LvMg.canMove = false;
+        //    yield return new WaitForSeconds(0.1f);
+        //    if (GoodEnd) //first check if need to trigger GoodEnd Event (+ money)
+        //        LevelManager.LvMg.ReceiveReward(PayMoney + GoodEndMoney);
+        //    else
+        //        LevelManager.LvMg.ReceiveReward(PayMoney); //then resume with normal payouts (no pay at BadEnd)
+        //    yield return new WaitForSeconds(0.5f);
+        //    StartCoroutine(LevelManager.LvMg.AfterRideProcess());
+        //    yield return new WaitForSeconds(1.0f);
+        //    if (RideCus01)
+        //        RideCus01 = false;
+        //    if (RideCus02)
+        //        RideCus02 = false;
+        //    if (RideCus03)
+        //        RideCus03 = false;
+        //    if (RideCus04)
+        //        RideCus04 = false;
+        //}
         CurrentCusTalkCount += 1;//ADD talkcount
         if (CurrentCusTalkCount == 4) //check talkcount after adding
         {
@@ -155,10 +161,41 @@ public class DialogueManager : MonoBehaviour {
         }
         LevelManager.LvMg.canTalk = false;
         InitiateTalk = true;
-        LevelManager.LvMg.oneTime = true;
+        //LevelManager.LvMg.oneTime = true;
+		selectiveDisplay.SetActive(false);
+		yield return null;
     }
 
-    public void AfterCusTalk()
+	public void ReachTrigger() //use for calling coroutine from other script
+	{
+		StartCoroutine(DestinationReached(LevelManager.LvMg.C1_DisplayedPay, LevelManager.LvMg.Customer1GoodEndPay));
+	}
+
+	public IEnumerator DestinationReached(int PayMoney, int GoodEndMoney)
+	{
+		LevelManager.LvMg.canMove = false;
+		Player.playerInstance.canControl = false;
+		selectiveDisplay.SetActive(true);		
+		if (GoodEnd) //first check if need to trigger GoodEnd Event (+ money)
+			LevelManager.LvMg.ReceiveReward(PayMoney + GoodEndMoney);
+		else
+			LevelManager.LvMg.ReceiveReward(PayMoney); //then resume with normal payouts (no pay at BadEnd)
+		
+		yield return new WaitForSeconds(0.5f);
+		StartCoroutine(LevelManager.LvMg.AfterRideProcess());
+		yield return new WaitForSeconds(1.0f);
+		if (RideCus01)
+			RideCus01 = false;
+		if (RideCus02)
+			RideCus02 = false;
+		if (RideCus03)
+			RideCus03 = false;
+		if (RideCus04)
+			RideCus04 = false;		
+		LevelManager.LvMg.oneTime = true;
+	}
+
+	public void AfterCusTalk()
     {
         if (RideCus01)
         {

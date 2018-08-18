@@ -7,10 +7,13 @@ public class Player : MonoBehaviour {
 	
 	private float movingDistance=1; // how far the taxi move
 	public int blockX=0,blockY=0; //to restrict the movement of the taxi, not going beyond the border	
+	public bool canControl=false;
 
 	private int randomNo;//to determine the action after triggering the random event
 	public GameObject gameManager;
 	public static Player playerInstance=null;
+
+	private GameObject selectiveDisplay;
 
 	//public bool canMove=false;
 
@@ -23,38 +26,41 @@ public class Player : MonoBehaviour {
 	private void Start()
 	{
 		gameManager = GameObject.Find("GameManager");
+		selectiveDisplay = GameObject.Find("SelectiveDisplay");
 	}
 	private void Update()
 	{
-		
-		#region UserInput
-		if (Input.GetKeyDown("a") && blockX > 0)
+		if (canControl)
 		{
-			transform.Translate(Vector3.left * movingDistance);
-			blockX -= 1;
-			GetComponent<SpriteRenderer>().flipX = true;
-			LevelManager.LvMg.stepsCount += 1;
-		}
+			#region UserInput
+			if (Input.GetKeyDown("a") && blockX > 0)
+			{
+				transform.Translate(Vector3.left * movingDistance);
+				blockX -= 1;
+				GetComponent<SpriteRenderer>().flipX = true;
+				LevelManager.LvMg.ProgressBar += 1;
+			}
 
-		if (Input.GetKeyDown("d") && blockX < 3)
-		{
-			transform.Translate(Vector3.right * movingDistance);
-			blockX += 1;
-			GetComponent<SpriteRenderer>().flipX = false;
-			LevelManager.LvMg.stepsCount += 1;
-		}
+			if (Input.GetKeyDown("d") && blockX < 3)
+			{
+				transform.Translate(Vector3.right * movingDistance);
+				blockX += 1;
+				GetComponent<SpriteRenderer>().flipX = false;
+				LevelManager.LvMg.ProgressBar += 1;
+			}
 
-		if (Input.GetKeyDown("w") && blockY < 3)
-		{
-			transform.Translate(Vector3.up * movingDistance);
-			blockY += 1;
-			LevelManager.LvMg.stepsCount += 1;
-		}
-		if (Input.GetKeyDown("s") && blockY > 0)
-		{
-			transform.Translate(Vector3.down * movingDistance);
-			blockY -= 1;
-			LevelManager.LvMg.stepsCount += 1;
+			if (Input.GetKeyDown("w") && blockY < 3)
+			{
+				transform.Translate(Vector3.up * movingDistance);
+				blockY += 1;
+				LevelManager.LvMg.ProgressBar += 1;
+			}
+			if (Input.GetKeyDown("s") && blockY > 0)
+			{
+				transform.Translate(Vector3.down * movingDistance);
+				blockY -= 1;
+				LevelManager.LvMg.ProgressBar += 1;
+			}
 		}
 		
 		#endregion
@@ -71,21 +77,22 @@ public class Player : MonoBehaviour {
 		{
 			Destroy(other.gameObject);
 			Debug.Log("You triggered road block");
-			LevelManager.LvMg.stepsCount += 2;
+			LevelManager.LvMg.ProgressBar += 2;
 		}
 
 		if (other.tag == "Chat")
 		{
 			Destroy(other.gameObject);
-			Debug.Log("TALK SHIT");
+			selectiveDisplay.SetActive(true);
+			LevelManager.LvMg.canTalk = true;
 		}
 
 		if (other.tag == "Destination")
 		{
-			Destroy(other.gameObject);
-			Debug.Log("You've reached ur destination");
-			GameManager.managerInstance.boardScript.ResetBoard();
-			
+			Destroy(other.gameObject);			
+			StartCoroutine(GameManager.managerInstance.boardScript.ResetBoard());
+			DialogueManager.DialMg.ReachTrigger();
+
 		}
 		if (other.tag == "Event")
 		{
@@ -95,13 +102,13 @@ public class Player : MonoBehaviour {
 			if (randomNo == 1)
 			{				
 				Debug.Log("Shortut Triggered");
-				LevelManager.LvMg.stepsCount -= 2;
+				LevelManager.LvMg.ProgressBar -= 2;
 			}
 			else if (randomNo == 2)
 			{				
 				
 				Debug.Log("You triggered road block");
-				LevelManager.LvMg.stepsCount += 2;
+				LevelManager.LvMg.ProgressBar += 2;
 			}
 			else if (randomNo == 3)
 			{				
@@ -117,7 +124,7 @@ public class Player : MonoBehaviour {
 		{
 			Destroy(other.gameObject);
 			Debug.Log("Shortut Triggered");
-			LevelManager.LvMg.stepsCount -= 2;
+			LevelManager.LvMg.ProgressBar -= 2;
 		}
 		if (other.tag == "Tips")
 		{
