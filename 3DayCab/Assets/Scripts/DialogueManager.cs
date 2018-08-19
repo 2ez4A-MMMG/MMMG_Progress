@@ -161,7 +161,7 @@ public class DialogueManager : MonoBehaviour {
         }
         LevelManager.LvMg.canTalk = false;
         InitiateTalk = true;
-        //LevelManager.LvMg.oneTime = true;
+        LevelManager.LvMg.oneTime = true;
 		selectiveDisplay.SetActive(false);
 		Player.playerInstance.canControl = true;
 		yield return null;
@@ -193,7 +193,7 @@ public class DialogueManager : MonoBehaviour {
 			RideCus03 = false;
 		if (RideCus04)
 			RideCus04 = false;		
-		LevelManager.LvMg.oneTime = true;
+		//LevelManager.LvMg.oneTime = true;
 	}
 
 	public void AfterCusTalk()
