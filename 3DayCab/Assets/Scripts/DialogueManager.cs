@@ -163,6 +163,7 @@ public class DialogueManager : MonoBehaviour {
         InitiateTalk = true;
         //LevelManager.LvMg.oneTime = true;
 		selectiveDisplay.SetActive(false);
+		Player.playerInstance.canControl = true;
 		yield return null;
     }
 

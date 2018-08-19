@@ -85,6 +85,7 @@ public class Player : MonoBehaviour {
 			Destroy(other.gameObject);
 			selectiveDisplay.SetActive(true);
 			LevelManager.LvMg.canTalk = true;
+			canControl = false;
 		}
 
 		if (other.tag == "Destination")
