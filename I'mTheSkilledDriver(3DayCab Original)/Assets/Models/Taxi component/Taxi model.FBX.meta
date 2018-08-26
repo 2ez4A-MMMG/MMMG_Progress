@@ -1,0 +1,144 @@
+fileFormatVersion: 2
+guid: ca17836dcd15f094e9054fd733379d37
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: Back Door
+    100002: Back Door Nut
+    100004: Back Left Tyre
+    100006: Back Right Tyre
+    100008: Driver Door
+    100010: Driver Nut
+    100012: Front Left Tyre
+    100014: Front Right Tyre
+    100016: //RootNode
+    400000: Back Door
+    400002: Back Door Nut
+    400004: Back Left Tyre
+    400006: Back Right Tyre
+    400008: Driver Door
+    400010: Driver Nut
+    400012: Front Left Tyre
+    400014: Front Right Tyre
+    400016: //RootNode
+    2100000: 'Material #19'
+    2100002: 'Material #12'
+    2100004: 'Material #20'
+    2100006: 'Material #21'
+    2100008: 'Material #16'
+    2100010: 'Material #14'
+    2100012: 'Material #22'
+    2100014: 'Material #13'
+    2100016: 'Material #18'
+    2100018: 'Material #15'
+    2100020: 'Material #17'
+    2100022: 'Material #11'
+    2100024: No Name
+    2300000: Back Door
+    2300002: Back Door Nut
+    2300004: Back Left Tyre
+    2300006: Back Right Tyre
+    2300008: Driver Door
+    2300010: Driver Nut
+    2300012: Front Left Tyre
+    2300014: Front Right Tyre
+    2300016: //RootNode
+    3300000: Back Door
+    3300002: Back Door Nut
+    3300004: Back Left Tyre
+    3300006: Back Right Tyre
+    3300008: Driver Door
+    3300010: Driver Nut
+    3300012: Front Left Tyre
+    3300014: Front Right Tyre
+    3300016: //RootNode
+    4300000: Taxi
+    4300002: Back Right Tyre
+    4300004: Front Right Tyre
+    4300006: Front Left Tyre
+    4300008: Back Left Tyre
+    4300010: Driver Nut
+    4300012: Driver Door
+    4300014: Back Door Nut
+    4300016: Back Door
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
