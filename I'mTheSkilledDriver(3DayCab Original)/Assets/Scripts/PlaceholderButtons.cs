@@ -4,33 +4,19 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class PlaceholderButtons : MonoBehaviour {	
+public class PlaceholderButtons : MonoBehaviour {
 
-	//all these are buttons for showing animations. Nothing more, nothing less
-
-	//move the backgrounds
-	public void ChangeBGMove()
+    //move the backgrounds - not needed?
+    public void ChangeBGMove()
     {
-        if (!LevelManager.LvMg.canMove)
+        if (LevelManager.LvMg.roadMoveSpeed == 0)
         {
-            LevelManager.LvMg.canMove = true;
+            LevelManager.LvMg.roadMoveSpeed = 7;
         }
         else
         {
-            LevelManager.LvMg.canMove = false;
+            LevelManager.LvMg.roadMoveSpeed = 0;
         }
-    }
-
-    //display chat
-    public void StartTalking()
-    {
-        LevelManager.LvMg.canTalk = true;
-		
-    }
-    //not sure if needed tho
-    public void StopTalking()
-    {
-        LevelManager.LvMg.canTalk = false;
     }
 
     //select customers
@@ -38,26 +24,28 @@ public class PlaceholderButtons : MonoBehaviour {
     {
         DialogueManager.DialMg.RideCus01 = true;
         LevelManager.LvMg.oneTime = true;
-		GameObject.Find("SelectiveDisplay").SetActive(false);
-	}
+    }
     public void SelectC2_FemaleStudent()
     {
         DialogueManager.DialMg.RideCus02 = true;
         LevelManager.LvMg.oneTime = true;
-		GameObject.Find("SelectiveDisplay").SetActive(false);
-	}
+    }
     public void SelectC3_OldMan()
     {
         DialogueManager.DialMg.RideCus03 = true;
         LevelManager.LvMg.oneTime = true;
-		GameObject.Find("SelectiveDisplay").SetActive(false);
-	}
+    }
     public void SelectC4_PartTimer()
     {
         DialogueManager.DialMg.RideCus04 = true;
         LevelManager.LvMg.oneTime = true;
-		GameObject.Find("SelectiveDisplay").SetActive(false);
-	}
+    }
+
+    //skip chats 1-4
+    public void skipChat124()
+    {
+        DialogueManager.DialMg.SkipButtonPressed = true;
+    }
 
     public void ExitLevel()
     {
@@ -75,6 +63,7 @@ public class PlaceholderButtons : MonoBehaviour {
     {
         Application.Quit();
     }
+
     public void Open_Close_Panel(GameObject panel)
     {
         if (!panel.activeSelf)
@@ -83,12 +72,14 @@ public class PlaceholderButtons : MonoBehaviour {
             panel.SetActive(false);
     }
 
-    //not debug anymore: remove all player prefs & reset game
+    //remove all player prefs & reset game
     public void DeleteAllPlayerPrefs()
     {
         PlayerPrefs.DeleteAll();
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
+
+
     //DEBUG: reset only the chatCounts
     public void ResetAllChatCounts()
     {

@@ -53,7 +53,7 @@
 [title=Customer2_Talk4_END]
 
 [title=Customer2_Talk5_START]
-*Customer2*: Hi there, handsome~
+*Customer2*: Hi there, handsome.
 *Customer2*: So, about the money you took last time......you saw the message in it too, right?
 *Customer2*: So, I assume you're ok with the proposal. Let us start, then......
 [title=Cus2Talk5_CutScene1Start]

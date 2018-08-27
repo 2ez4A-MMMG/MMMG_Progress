@@ -5,6 +5,10 @@ using UnityEngine;
 public class FinalBlockCover : MonoBehaviour {
 
     public GameObject Change;
+    public int badEndCount = 4;
+
+    public bool exactNo = true;
+    public bool moreThan = false;
 
     // Use this for initialization
     void Awake () {
@@ -13,7 +17,12 @@ public class FinalBlockCover : MonoBehaviour {
 
     void Start()
     {
-        if (PlayerPrefs.GetInt("BadEndCount") == 4)
-            Change.SetActive(true);
+        if (exactNo)
+            if (PlayerPrefs.GetInt("BadEndCount") == badEndCount)
+                Change.SetActive(true);
+
+        if (moreThan)
+            if (PlayerPrefs.GetInt("BadEndCount") >= badEndCount)
+                Change.SetActive(true);
     }
 }

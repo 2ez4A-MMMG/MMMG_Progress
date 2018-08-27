@@ -10,7 +10,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace>
     </RootNamespace>
-    <ProjectGuid>{5F1E89B2-D2AD-B3BB-A467-3003CCDA68C7}</ProjectGuid>
+    <ProjectGuid>{614AD867-60A0-93F8-0AEE-85237017834E}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp-Editor</AssemblyName>
@@ -64,10 +64,10 @@
     <Compile Include="Assets\RPGTALK\Scripts\Editor\RPGTalkLocalizationEditor.cs" />
     <Compile Include="Assets\RPGTALK\Scripts\RPGTalkCinematic\Editor\RPGTalkCinematicDrawer.cs" />
     <Reference Include="UnityEditor.StandardEvents">
-      <HintPath>C:/Users/Ang CS/Documents/GitHub/MMMG_Progress/3DayCab/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
+      <HintPath>C:/Users/Ang CS/Documents/GitHub/MMMG_Progress/I'mTheSkilledDriver(3DayCab Original)/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
     </Reference>
     <Reference Include="Unity.PackageManagerUI.Editor">
-      <HintPath>C:/Users/Ang CS/Documents/GitHub/MMMG_Progress/3DayCab/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
+      <HintPath>C:/Users/Ang CS/Documents/GitHub/MMMG_Progress/I'mTheSkilledDriver(3DayCab Original)/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>C:/Program Files/Unity/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
@@ -375,7 +375,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Assembly-CSharp.csproj">
-      <Project>{BDDFFEB9-0CBC-1CF1-A76A-6A7C1292B1C7}</Project>
+      <Project>{46F54E68-3A41-3048-C02F-53299F4D06C9}</Project>
       <Name>Assembly-CSharp</Name>
     </ProjectReference>
   </ItemGroup>

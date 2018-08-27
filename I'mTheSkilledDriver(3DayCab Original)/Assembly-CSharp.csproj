@@ -10,7 +10,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace>
     </RootNamespace>
-    <ProjectGuid>{BDDFFEB9-0CBC-1CF1-A76A-6A7C1292B1C7}</ProjectGuid>
+    <ProjectGuid>{46F54E68-3A41-3048-C02F-53299F4D06C9}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -72,13 +72,14 @@
     <Compile Include="Assets\RPGTALK\Scripts\RPGTalkLocalization.cs" />
     <Compile Include="Assets\RPGTALK\Scripts\RPGTalkLocalizationString.cs" />
     <Compile Include="Assets\RPGTALK\Scripts\RPGTalkTimeline.cs" />
-    <Compile Include="Assets\Scripts\BG_Move.cs" />
     <Compile Include="Assets\Scripts\BoardManager.cs" />
     <Compile Include="Assets\Scripts\CoverER.cs" />
+    <Compile Include="Assets\Scripts\CustomerVariables.cs" />
     <Compile Include="Assets\Scripts\DialogueManager.cs" />
     <Compile Include="Assets\Scripts\FadeLoader.cs" />
     <Compile Include="Assets\Scripts\FinalBlockCover.cs" />
     <Compile Include="Assets\Scripts\FlashTrigger.cs" />
+    <Compile Include="Assets\Scripts\GameEndDialogues.cs" />
     <Compile Include="Assets\Scripts\GameEndDisplay.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\LevelManager.cs" />
@@ -87,8 +88,11 @@
     <Compile Include="Assets\Scripts\Player.cs" />
     <Compile Include="Assets\Scripts\ProgressBar.cs" />
     <Compile Include="Assets\Scripts\ProgressBarManager.cs" />
-    <Compile Include="Assets\Scripts\SelectBuilding.cs" />
+    <Compile Include="Assets\Scripts\road backgrounds\BG_Move.cs" />
+    <Compile Include="Assets\Scripts\road backgrounds\SelectBuilding.cs" />
     <Compile Include="Assets\Scripts\SetResolution.cs" />
+    <Compile Include="Assets\Scripts\SkipButtonDisappear.cs" />
+    <Compile Include="Assets\Scripts\SoundManager.cs" />
     <None Include="Assets\RPGTALK\Demo\Talks\DemoTagsText_PT_BR.txt" />
     <None Include="Assets\Scripts\Dialogue\characters_talks.txt" />
     <None Include="Assets\RPGTALK\Demo\Talks\DemoTagsText.txt" />
@@ -98,10 +102,10 @@
     <None Include="Assets\Scripts\Dialogue\carRadioReports.txt" />
     <None Include="Assets\RPGTALK\ReadMe.txt" />
     <Reference Include="UnityEditor.StandardEvents">
-      <HintPath>C:/Users/Ang CS/Documents/GitHub/MMMG_Progress/3DayCab/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
+      <HintPath>C:/Users/Ang CS/Documents/GitHub/MMMG_Progress/I'mTheSkilledDriver(3DayCab Original)/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
     </Reference>
     <Reference Include="Unity.PackageManagerUI.Editor">
-      <HintPath>C:/Users/Ang CS/Documents/GitHub/MMMG_Progress/3DayCab/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
+      <HintPath>C:/Users/Ang CS/Documents/GitHub/MMMG_Progress/I'mTheSkilledDriver(3DayCab Original)/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>C:/Program Files/Unity/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>

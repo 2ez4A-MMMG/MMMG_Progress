@@ -19,20 +19,8 @@ public class BoardManager : MonoBehaviour {
 
 	private Transform boardHolder; //collapse everything in here
 	private List<Vector3> gridPositions = new List<Vector3>();
-	private GameObject playerHolder;
 
 	public GameObject playerPrefab;
-	public static BoardManager boardManagerInstance;
-
-	public Vector3 playerInitialPosition;
-
-	private void Awake()
-	{
-		if (boardManagerInstance==null)
-		{
-			boardManagerInstance = this;
-		}
-	}
 
 	void InitialiseList()
 	{
@@ -54,11 +42,15 @@ public class BoardManager : MonoBehaviour {
 		//create a boarder surrounding all tiles
 		for (int x = -1; x < columns+1 ; x++)
 		{
-			for (int y=0; y<rows;y++)
+			for (int y=-1; y<rows+1;y++)
 			{
 				GameObject toInstantiate = roadTiles[UnityEngine.Random.Range(0, roadTiles.Length)]; //randomly select one of the sprite from the list
-				toInstantiate.GetComponent<SpriteRenderer>().color = Color.black;
-				if (x == -1 || x == columns)
+				if(x==0&&y==0)
+				{
+					GameObject player = Instantiate(playerPrefab, new Vector3(x, y, -0.0002f), Quaternion.identity) as GameObject;
+					player.transform.SetParent(boardHolder);
+				}
+				if (x == -1 || x == columns || y == -1 || y == rows)
 				{
 					toInstantiate = outerWallTiles[UnityEngine.Random.Range(0, outerWallTiles.Length)];
 				}
@@ -84,49 +76,29 @@ public class BoardManager : MonoBehaviour {
 		for (int i = 0; i < spawnCount; i++)
 		{
 			Vector3 randomPosition = RandomPosition();
-			randomPosition.z = -0.0001f; //make it slightly in front of the road tile			
+			randomPosition.z = -0.0001f; //make it slightly in front of the road tile
 			GameObject instance = Instantiate(spawnObject, randomPosition, Quaternion.identity) as GameObject;
-			instance.GetComponent<SpriteRenderer>().color = Color.black;
 			instance.transform.SetParent(boardHolder);
 		}
 	}
 
 	public void SetupScene()
-	{		
-		StartCoroutine(SetupSceneCoroutine());
-		SpawnPlayer();
-	}
-
-	public IEnumerator SetupSceneCoroutine()
-	{				
-		BoardSetup();				
-		InitialiseList();				
-		SpawnObject(destination, 1);		
-		SpawnObject(shortcutTiles, 2);		
-		SpawnObject(roadBlocksTiles, 2);		
-		SpawnObject(extraTipsTiles, 2);		
-		SpawnObject(randomEventsTiles, 1);		
-		SpawnObject(speechBubbleTiles, 2);				
-		yield return null;
-	}
-
-	public void SpawnPlayer()
 	{
-		playerHolder = Instantiate(playerPrefab, new Vector3(0, 0, -0.0002f), Quaternion.identity) as GameObject;
+		BoardSetup();
+		InitialiseList();
+		SpawnObject(destination, 1);
+		SpawnObject(shortcutTiles, 2);
+		SpawnObject(roadBlocksTiles, 2);
+		SpawnObject(extraTipsTiles, 2);
+		SpawnObject(randomEventsTiles, 1);
+		SpawnObject(speechBubbleTiles, 2);
 	}
 
-	public IEnumerator ResetBoard()
+	public void ResetBoard()
 	{
-		playerHolder.transform.position = new Vector3(0, 0, -0.0002f);
-		Player.playerInstance.blockX = 0;
-		Player.playerInstance.blockY = 0;
-		Player.playerInstance.GetComponent<SpriteRenderer>().flipX = false;
-		yield return new WaitForSeconds(0.5f);
-		Destroy(GameObject.Find("Board"));			
-		StartCoroutine(SetupSceneCoroutine());
-		
+		Destroy(GameObject.Find("Board"));
+
+		SetupScene();
 	}
-
-
 
 }

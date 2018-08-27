@@ -23,10 +23,12 @@ public class GameEndDisplay : MonoBehaviour {
         BadNews04.SetActive(false);
         BadNews05.SetActive(false);
     }
-	
-	// Update is called once per frame
-	void Update () {
+
+    // Update is called once per frame
+    void Update () {
         StartCoroutine(ShowGameStatus());
+        //if game clear/over by normal means, immediately starts coroutine
+        //if game over by BAD END, runs talk first, then runs coroutine
 	}
 
     IEnumerator ShowGameStatus()
@@ -99,6 +101,7 @@ public class GameEndDisplay : MonoBehaviour {
         PlayerPrefs.SetInt("Cus3TalkCount", 1);
         PlayerPrefs.SetInt("Cus4TalkCount", 1);
         //Fading() fade to title screen
-        StartCoroutine(FadeLoader.FadeSLoad.Fading(FadeLoader.FadeSLoad.TitleScreen));
+        yield return StartCoroutine(FadeLoader.FadeSLoad.Fading(FadeLoader.FadeSLoad.TitleScreen));
     }
+
 }

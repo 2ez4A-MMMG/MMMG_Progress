@@ -8,10 +8,10 @@ public class GameManager : MonoBehaviour {
 	public BoardManager boardScript;
 	public static GameManager managerInstance = null;
 
-	//public Text dayCountText;
-	//public int dayCount=1, stepsCountMax = 30, stepsCount;
+	public Text dayCountText,stepsCountText;
+	public int dayCount, stepsCountMax = 5, stepsCount;
 
-	//public int tips, tipsMax = 100, tipsMin = 50;	
+	public int tips, tipsMax = 100, tipsMin = 50;	
 
 
 	#region SceneSetup
@@ -25,10 +25,7 @@ public class GameManager : MonoBehaviour {
 		DontDestroyOnLoad(gameObject); //make sure it doesn't destroy when scene change
 		boardScript = GetComponent<BoardManager>();
 		InitGame();
-
 	}
-
-	
 
 	public void InitGame()
 	{
@@ -36,32 +33,26 @@ public class GameManager : MonoBehaviour {
 	}
 	#endregion
 
-	//private void Start()
-	//{
-		
-	//	dayCountText.text = "Day " + dayCount;
-	//}
-
-	//private void Update()
-	//{
-	//	if (stepsCount >= stepsCountMax)
-	//	{
-	//		stepsCount = 0;
-	//		dayCount += 1;
-	//		dayCountText.text="Day "+dayCount;
-	//		if (dayCount >= 3)
-	//		{
-	//			//Debug.Log("GameOver");
-	//		}
-	//	}
+	private void Update()
+	{
+		if (stepsCount >= stepsCountMax)
+		{
+			stepsCount = 0;
+			dayCount += 1;
+			//Debug.Log("NewDay");
+			if (dayCount >= 3)
+			{
+				//Debug.Log("GameOver");
+			}
+		}
 
 		
-	//}
+	}
 
-	//public void TipsGenerator()
-	//{
-	//	tips = Random.Range(tipsMin, tipsMax);
-	//}
+	public void TipsGenerator()
+	{
+		tips = Random.Range(tipsMin, tipsMax);
+	}
 
 
 }

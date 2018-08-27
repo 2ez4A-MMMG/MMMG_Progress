@@ -84,3 +84,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boardScript: {fileID: 0}
+  dayCountText: {fileID: 0}
+  stepsCountText: {fileID: 0}
+  dayCount: 0
+  stepsCountMax: 30
+  stepsCount: 0
+  tips: 0
+  tipsMax: 100
+  tipsMin: 50
