@@ -210,6 +210,7 @@ RectTransform:
   - {fileID: 719935786}
   - {fileID: 1887438824}
   - {fileID: 1327272246}
+  - {fileID: 1272639906}
   - {fileID: 1422093990}
   - {fileID: 1469155615}
   - {fileID: 256980714}
@@ -515,7 +516,6 @@ RectTransform:
   - {fileID: 613086244}
   - {fileID: 166791880}
   - {fileID: 766642858}
-  - {fileID: 1272639906}
   m_Father: {fileID: 2040954210}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1100,7 +1100,7 @@ RectTransform:
   - {fileID: 775310773}
   - {fileID: 487861338}
   m_Father: {fileID: 46772481}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -3528,7 +3528,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &994920610
 Transform:
   m_ObjectHideFlags: 0
@@ -4056,7 +4056,7 @@ RectTransform:
   - {fileID: 1596744746}
   - {fileID: 1349960444}
   - {fileID: 1513112516}
-  m_Father: {fileID: 103914180}
+  m_Father: {fileID: 46772481}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -4502,7 +4502,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1327272246
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4863,7 +4863,7 @@ MonoBehaviour:
   gunShot_sfx: {fileID: 8300000, guid: 718a7ba34c56f3c4291b5d02921c75ef, type: 3}
   openCarDoor_sfx: {fileID: 8300000, guid: 0fb8eb4caf45dbe4d87d46686988ee2b, type: 3}
   closeCarDoor_sfx: {fileID: 8300000, guid: f65a3b196095eb54095eb2c76c89b253, type: 3}
-  glitching_sfx: {fileID: 8300000, guid: e57c19b36db819f44b140637379ffd33, type: 3}
+  glitching_sfx: {fileID: 8300000, guid: 5d2387e060dc35f4ebf931c8eb08f715, type: 3}
 --- !u!1 &1398242516
 GameObject:
   m_ObjectHideFlags: 0
@@ -4960,7 +4960,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 46772481}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -5120,7 +5120,7 @@ RectTransform:
   m_LocalScale: {x: 0.9, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 46772481}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -6237,7 +6237,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 54827569}
-        m_MethodName: 
+        m_MethodName: SelectC5_HoodieGirl
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

@@ -14,7 +14,8 @@ public class SkipButtonDisappear : MonoBehaviour {
 		if (DialogueManager.DialMg.Cus1TalkCount == 5 && DialogueManager.DialMg.RideCus01 || 
             DialogueManager.DialMg.Cus2TalkCount == 5 && DialogueManager.DialMg.RideCus02 ||
             DialogueManager.DialMg.Cus3TalkCount == 5 && DialogueManager.DialMg.RideCus03 || 
-            DialogueManager.DialMg.Cus4TalkCount == 5 && DialogueManager.DialMg.RideCus04)
+            DialogueManager.DialMg.Cus4TalkCount == 5 && DialogueManager.DialMg.RideCus04 ||
+            DialogueManager.DialMg.RideCus05)
         {
             this.gameObject.SetActive(false);
         }

@@ -50,6 +50,7 @@ public class LevelManager : MonoBehaviour {
     private bool dayEnding;
 
     void Awake () {
+        PlayerPrefs.SetInt("BadEndCount", 4);
         LvMg = this;
         roadMoveSpeed = 0;
         canTalk = false;
@@ -95,12 +96,13 @@ public class LevelManager : MonoBehaviour {
         }
 
         if (DialogueManager.DialMg.RideCus01 || DialogueManager.DialMg.RideCus02 ||
-            DialogueManager.DialMg.RideCus03 || DialogueManager.DialMg.RideCus04 || canTalk || dayStartRunning || dayEnding)
+            DialogueManager.DialMg.RideCus03 || DialogueManager.DialMg.RideCus04 ||
+            DialogueManager.DialMg.RideCus05 || canTalk || dayStartRunning || dayEnding)
         {
             SelectCMenu.SetActive(false);
             //but if customer is selected, have to initiate the enter animation
             if (DialogueManager.DialMg.RideCus01 || DialogueManager.DialMg.RideCus02 ||
-                DialogueManager.DialMg.RideCus03 || DialogueManager.DialMg.RideCus04)
+                DialogueManager.DialMg.RideCus03 || DialogueManager.DialMg.RideCus04 || DialogueManager.DialMg.RideCus05)
             {
                 if (oneTime)
                 {

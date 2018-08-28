@@ -6,7 +6,8 @@
 
 [title=Customer1_Talk2_START]
 *Customer1*: This place can be crowded at times, eh?
-*Customer1*: Beware not to bump into any <color=*highlightColor*>roadblocks</color>, lad. I don't want to spend more time on traffic than I already do.
+*Customer1*: Beware not to bump into any <color=*highlightColor*>roadblocks</color>, lad.
+*Customer1*: I don't want to spend more time on traffic than I already do.
 [title=Customer1_Talk2_END]
 
 [title=Customer1_Talk3_START]
@@ -29,7 +30,8 @@
 [title=Cus1Talk5_CutScene1Start]
 [title=Cus1Talk5_CutScene1End]
 *Customer1*: ......hahahaGahahAhAhaHahaHAHAHAHA!!!!
-*Customer1*: Let mE take the WHeel! I'd rather DiE than 2 hUmiLIate mySElf Over thiS sHItty prAnK that RuiNEd my lifE!!!
+*Customer1*: Let mE take the WHeel!
+*Customer1*: I'd rather DiE than 2 hUmiLIate mySElf Over thiS sHItty prAnK that RuiNEd my lifE!!!
 [title=Customer1_Talk5_END]
 
 [title=Customer2_Talk1_START]
@@ -39,7 +41,8 @@
 
 [title=Customer2_Talk2_START]
 *Customer2*: I hope I won't be late for today's class too......
-*Customer2*: You don't mind if we go a little faster? There should be a <color=*highlightColor*>shortcut</color> or something that we could use.
+*Customer2*: You don't mind if we go a little faster?
+*Customer2*: There should be a <color=*highlightColor*>shortcut</color> or something that we could use.
 [title=Customer2_Talk2_END]
 
 [title=Customer2_Talk3_START]
@@ -49,17 +52,20 @@
 
 [title=Customer2_Talk4_START]
 *Customer2*: Thank you for the ride, handsome.
-*Customer2*: If you don't mind, here's some tips for you. Let's say it's a bonus for driving a pretty customer like me.
+*Customer2*: If you don't mind, here's some tips for you.
+*Customer2*: Let's say it's a bonus for driving a pretty customer like me.
 [title=Customer2_Talk4_END]
 
 [title=Customer2_Talk5_START]
 *Customer2*: Hi there, handsome.
 *Customer2*: So, about the money you took last time......you saw the message in it too, right?
-*Customer2*: So, I assume you're ok with the proposal. Let us start, then......
+*Customer2*: So, I assume you're ok with the proposal.
+*Customer2*: Let us start, then......
 [title=Cus2Talk5_CutScene1Start]
 [title=Cus2Talk5_CutScene1End]
 *Customer2*: That face......it seems like you don't really know the deal?
-*Customer2*: ThEN agAiN, u sHOuld ALreaDy kNEw It tHe moMeNt U sEe a stUdeNT HaVIng SO mucH moNEy......hEHehEhE.
+*Customer2*: ThEN agAiN, u sHOuld ALreaDy kNEw It......
+*Customer2*: ......tHe moMeNt U sEe a stUdeNT HaVIng SO mucH moNEy......hEHehEhE.
 [title=Customer2_Talk5_END]
 
 [title=Customer3_Talk1_START]
@@ -89,8 +95,10 @@
 *Customer3*: You don't mind we take another detour today, do you?
 *Customer3*: ......
 *Customer3*: You really remind me so much of my grandson......
-*Customer3*: ......that goddamn bastard who keeps extorting money from me just because he wants it for his so-called 'job'!!
-*Customer3*: THat SamE faCE, thAT sAMe sMiRk......I CaNNot stANd iT anyMoRE!!!
+*Customer3*: ......that goddamn bastard who keeps extorting money from me,
+*Customer3*: and all just for his so-called 'job'!!
+*Customer3*: THat SamE faCE, thAT sAMe sMiRk......
+*Customer3*: I CaNNot stANd iT anyMoRE!!!
 [title=Customer3_Talk5_END]
 
 [title=Customer4_Talk1_START]
@@ -99,8 +107,9 @@
 [title=Customer4_Talk1_END]
 
 [title=Customer4_Talk2_START]
-*Customer4*: Ah, I probably did the correct thing by calling the cabs, the route seems confusing......
-*Customer4*: It looks like <color=*highlightColor*>random things</color> would happen at times in some roads. Hopefully it's shortcuts instead of roadblocks and such......
+*Customer4*: Ah, I probably did the correct thing by calling the cabs. The route seems confusing......
+*Customer4*: It looks like <color=*highlightColor*>random things</color> would happen at times in some roads. 
+*Customer4*: Hopefully it's shortcuts instead of roadblocks and such......
 [title=Customer4_Talk2_END]
 
 [title=Customer4_Talk3_START]
@@ -118,15 +127,17 @@
 *Customer4*: Oh, please stop here for a while.
 [title=Cus4Talk5_CutScene1Start]
 [title=Cus4Talk5_CutScene1End]
-*Customer4*: I guess this world does hate me after all......now......
+*Customer4*: I guess this world does hate me after all. Now......
 [title=Cus4Talk5_CutScene2Start]
 [title=Cus4Talk5_CutScene2End]
 *Customer4*: GiVe MEh bACk my dAMn Job!!!
 [title=Customer4_Talk5_END]
 
 [title=Customer5_START]
-*LastCustomer*: Hello.
-*LastCustomer*: We still meet. Even after all that happened......
-*LastCustomer*: Now, please......
-*LastCustomer*: GIvE mE baCK mY cARRRrrrrRRRrrRRrRrrrrR---
+*Customer5*: Hello.
+*Customer5*: We still meet. Even after all that happened......
+*Customer5*: Now, please......
+[title=Cus5Talk_CutScene1Start]
+[title=Cus5Talk_CutScene1End]
+*Customer5*: GIvE mE baCK mY cARRRrrrrRRRrrRRrRrrrrR---
 [title=Customer5_END]

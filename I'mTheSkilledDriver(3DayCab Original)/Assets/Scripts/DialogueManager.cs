@@ -132,7 +132,8 @@ public class DialogueManager : MonoBehaviour {
             }
             if (RideCus05)
             {
-                rpgTalk.NewTalk("Customer5_START", "Customer5_END", rpgTalk.txtToParse, this, "Cus5FinalTalkCutScene1"); //set cutscene for this girl
+                SoundManager.soundMg.bgm_source.Stop();
+                rpgTalk.NewTalk("Customer5_START", "Cus5Talk_CutScene1Start", rpgTalk.txtToParse, this, "Cus5FinalTalkCutScene1");
                 InitiateTalk = false;
             }
         }
@@ -210,9 +211,6 @@ public class DialogueManager : MonoBehaviour {
         PlayerPrefs.SetInt("BadEndCount", PlayerPrefs.GetInt("BadEndCount") + 1);
         Debug.Log("Final BadEnd (5) == " + PlayerPrefs.GetInt("BadEndCount")); //display bad ends shown (int)
         LevelManager.LvMg.GameOver = true; //display Game over too
-        //LevelManager.LvMg.canTalk = false;
-        //InitiateTalk = true;
-        //LevelManager.LvMg.oneTime = true;
     }
     //END of declare
 
@@ -364,27 +362,32 @@ public class DialogueManager : MonoBehaviour {
         StartCoroutine(C5FTCut1Timings());
     }
 
+    public void Cus5FinalTalkCutScene2()
+    {
+        StopAllCoroutines();
+        StartCoroutine(C5FTCut2Timings());
+    }
+
     public IEnumerator C5FTCut1Timings()
     {
-        //InGame>[Screen suddenly shows enlarged version of the Hoodie Girl’s face, seemingly horrible as if being crashed]
-        //image setactive
+        SoundManager.soundMg.sfx_source.Stop();
         HoodieGirl_jsImg.SetActive(true);
-        //run animation by animator
-        //play glitch sound effect
+        SoundManager.soundMg.sfx_source.loop = true;
         SoundManager.soundMg.Play_sfx(SoundManager.soundMg.glitching_sfx, 1.0f);
-        yield return new WaitForSeconds(5.0f);
-        //InGame>[The car suddenly moves at a high speed, then screen fades black, then a car crash sound happen]
-        //roadmovespeed increase
-        LevelManager.LvMg.roadMoveSpeed = 12;
-        yield return new WaitForSeconds(1.0f);
+        yield return new WaitForSeconds(0.1f);
+        rpgTalk.NewTalk("Cus5Talk_CutScene1End", "Customer5_END", rpgTalk.txtToParse, this, "Cus5FinalTalkCutScene2");
+    }
+    public IEnumerator C5FTCut2Timings()
+    {
+        yield return new WaitForSeconds(0.3f);
         HoodieGirl_jsImg.SetActive(false);
-        //fade('null')
+        SoundManager.soundMg.sfx_source.Stop();
+        LevelManager.LvMg.roadMoveSpeed = 12;
         yield return new WaitForSeconds(0.5f);
+        LevelManager.LvMg.roadMoveSpeed = 20;
         yield return StartCoroutine(FadeLoader.FadeSLoad.Fading("null"));
-        //car crash sound
         SoundManager.soundMg.Play_sfx(SoundManager.soundMg.carCrash_sfx, 1.0f);
         yield return new WaitForSeconds(SoundManager.soundMg.carCrash_sfx.length);
-        //AfterFinalTalk()
         AfterFinalTalk();
     }
 
