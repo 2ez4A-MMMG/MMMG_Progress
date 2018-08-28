@@ -25,6 +25,12 @@ public class BoardManager : MonoBehaviour
 	public GameObject playerPrefab;
 	public static BoardManager boardManagerInstance;
 
+	public GameObject board;
+	public GameObject playerP;
+
+	public float initial_XOffset =0.5f;
+	public float initial_YOffset = 0.5f;
+
 	//public Vector3 playerInitialPosition;
 
 	private void Awake()
@@ -43,7 +49,7 @@ public class BoardManager : MonoBehaviour
 		{
 			for (int y = 0; y < rows; y++)
 			{
-				gridPositions.Add(new Vector3(x, y, 0f)); //creating possible positions to place object				
+				gridPositions.Add(new Vector3(x+initial_XOffset, y+initial_YOffset, 0f)); //creating possible positions to place object				
 			}
 		}
 	}
@@ -64,7 +70,7 @@ public class BoardManager : MonoBehaviour
 					toInstantiate = outerWallTiles[UnityEngine.Random.Range(0, outerWallTiles.Length)];
 				}
 
-				GameObject instance = Instantiate(toInstantiate, new Vector3(x, y, 0f), Quaternion.identity) as GameObject;
+				GameObject instance = Instantiate(toInstantiate, new Vector3(x+initial_XOffset, y+initial_YOffset, 0f), Quaternion.identity) as GameObject;
 
 				instance.transform.SetParent(boardHolder);
 			}
@@ -96,6 +102,10 @@ public class BoardManager : MonoBehaviour
 	{
 		StartCoroutine(SetupSceneCoroutine());
 		SpawnPlayer();
+		board = GameObject.Find("Board");
+		board.SetActive(false);
+		playerP = GameObject.Find("PlayerPrefab(Clone)");
+		playerP.SetActive(false);
 	}
 
 	public IEnumerator SetupSceneCoroutine()
@@ -113,18 +123,20 @@ public class BoardManager : MonoBehaviour
 
 	public void SpawnPlayer()
 	{
-		playerHolder = Instantiate(playerPrefab, new Vector3(0, 0, -0.0002f), Quaternion.identity) as GameObject;
+		playerHolder = Instantiate(playerPrefab, new Vector3(0+initial_XOffset, 0+initial_YOffset, -0.0002f), Quaternion.identity) as GameObject;
 	}
 
 	public void ResetBoard()
 	{
-		playerHolder.transform.position = new Vector3(0, 0, -0.0002f);
+		playerHolder.transform.position = new Vector3(0 + initial_XOffset, 0 + initial_YOffset, -0.0002f);
 		Player.playerInstance.blockX = 0;
 		Player.playerInstance.blockY = 0;
 		Player.playerInstance.GetComponent<SpriteRenderer>().flipX = false;		
-		Destroy(GameObject.Find("Board"));
+		Destroy(board);
 		StartCoroutine(SetupSceneCoroutine());
-
+		board = GameObject.Find("Board");
+		board.SetActive(true);
+		Player.playerInstance.destinationReached = false;
 	}
 
 

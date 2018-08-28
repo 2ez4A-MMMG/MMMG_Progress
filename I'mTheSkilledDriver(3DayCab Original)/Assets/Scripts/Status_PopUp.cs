@@ -37,14 +37,16 @@ public class Status_PopUp : MonoBehaviour {
 	public void DestinationReached()
 	{
 		//progress bar move more
-		PopupSlideIn("Destination Reached", "StatusText_DOWN");
+		PopupSlideIn("Arrived", "StatusText_UP");
 	}
 	//extra tips
 	public void AddExtraTips(int xtraAmount)
     {
-        //add extra money into your pay
-        PopupSlideIn("Extra $" + xtraAmount.ToString() + " Tips", "StatusText_UP");
-    }
+		//add extra money into your pay
+		LevelManager.LvMg.Money += xtraAmount;
+		PopupSlideIn("Extra $" + xtraAmount.ToString() + " Tips", "StatusText_UP");
+		Debug.Log("Tips Obtained: $" + xtraAmount.ToString());
+	}
 
     //Animation Controller - status popup
     public void PopupSlideIn(string popup_text, string AnimName)
@@ -54,6 +56,7 @@ public class Status_PopUp : MonoBehaviour {
 
     IEnumerator SpawnPopUp(string popup_text, string playAnim)
     {
+		Player.playerInstance.canControl = false;
         StatusPopup.SetActive(true);
         Text PopUpText = StatusPopup.GetComponentInChildren<Text>();
         PopUpText.text = popup_text;
@@ -61,5 +64,10 @@ public class Status_PopUp : MonoBehaviour {
         PopUpAnim.Play(playAnim);
         yield return new WaitForSeconds(PopUpAnim.GetCurrentAnimatorStateInfo(0).length);
         StatusPopup.SetActive(false);
-    }
+		if (!Player.playerInstance.destinationReached)
+		{
+			Player.playerInstance.canControl = true;
+			
+		}	
+	}
 }

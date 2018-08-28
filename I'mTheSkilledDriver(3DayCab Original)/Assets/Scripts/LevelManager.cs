@@ -49,8 +49,9 @@ public class LevelManager : MonoBehaviour {
     private bool dayStartRunning;
     private bool dayEnding;
 
+	public GameObject selectiveDisplay;
+
     void Awake () {
-        PlayerPrefs.SetInt("BadEndCount", 4);
         LvMg = this;
         roadMoveSpeed = 0;
         canTalk = false;
@@ -78,7 +79,8 @@ public class LevelManager : MonoBehaviour {
         BeforeDayDisplayText.text = "Day " + Day.ToString();
         if (PlayerPrefs.GetInt("BadEndCount") != 5)
             StartCoroutine(dayStart());
-    }
+		selectiveDisplay= GameObject.Find("SelectiveDisplay");
+	}
 	
 	// Update is called once per frame
 	void Update () {
@@ -184,20 +186,18 @@ public class LevelManager : MonoBehaviour {
 
         //moves car & then triggers chat
         roadMoveSpeed = 7;
-        yield return new WaitForSeconds(2.0f);
-        canTalk = true;
-    }
+        yield return new WaitForSeconds(0.5f);
+        //canTalk = true;
+		BoardManager.boardManagerInstance.board.SetActive(true);		
+		BoardManager.boardManagerInstance.playerP.SetActive(true);
+		Player.playerInstance.canControl = true;
+	}
 
     public IEnumerator AfterRideProcess()
     {
         dayEnding = true;
-
-        //progress bar
-        int pBValue = Random.Range(5, 10); //pBValue = 1 step initially
-        ProgressBar += pBValue; //initial progressValue
-
-        //calculate money earned
-        AfterRidePayment();
+		//calculate money earned
+		AfterRidePayment();
         yield return new WaitForSeconds(0.5f);
 
         SoundManager.soundMg.sfx_source.PlayOneShot(SoundManager.soundMg.closeCarDoor_sfx, 1.0f);
@@ -235,7 +235,16 @@ public class LevelManager : MonoBehaviour {
         yield return new WaitForSeconds(cusAnim.GetCurrentAnimatorStateInfo(0).length - SoundManager.soundMg.closeCarDoor_sfx.length / 2);
         Destroy(Customer);
 
-        if (ProgressBar >= ProgressBarLimit)
+		if (DialogueManager.DialMg.RideCus01)
+			DialogueManager.DialMg.RideCus01 = false;
+		if (DialogueManager.DialMg.RideCus02)
+			DialogueManager.DialMg.RideCus02 = false;
+		if (DialogueManager.DialMg.RideCus03)
+			DialogueManager.DialMg.RideCus03 = false;
+		if (DialogueManager.DialMg.RideCus04)
+			DialogueManager.DialMg.RideCus04 = false;
+
+		if (ProgressBar >= ProgressBarLimit)
         {
             //car moves, then fades
             roadMoveSpeed = 7;
@@ -263,33 +272,48 @@ public class LevelManager : MonoBehaviour {
         dayEnding = false;
     }
 
-    public void AfterRidePayment()
+	public IEnumerator DestinationArrived()
+	{
+		LevelManager.LvMg.roadMoveSpeed = 5;
+		yield return new WaitForSeconds(1.0f);
+		LevelManager.LvMg.roadMoveSpeed = 0;
+		yield return new WaitForSeconds(0.1f);
+		yield return StartCoroutine(LevelManager.LvMg.AfterRideProcess());
+		Debug.Log("set board & playerpref to false");
+		BoardManager.boardManagerInstance.board = GameObject.Find("Board");
+		BoardManager.boardManagerInstance.playerP = GameObject.Find("PlayerPrefab(Clone)");
+		BoardManager.boardManagerInstance.board.SetActive(false);
+		BoardManager.boardManagerInstance.playerP.SetActive(false);
+		selectiveDisplay.SetActive(true);
+
+		oneTime = true;
+		Debug.Log("onetime set to TRUE");
+		BoardManager.boardManagerInstance.ResetBoard();
+	}
+
+	public void AfterRidePayment()
     {
         if (DialogueManager.DialMg.RideCus01) {
-            BasicPayment(DialogueManager.DialMg.Cus1TalkCount, CustomerVariables.CusVars.C1_DisplayedPay,
-                            CustomerVariables.CusVars.Customer1GoodEndPay);
+            BasicPayment(DialogueManager.DialMg.Cus1TalkCount, CustomerVariables.CusVars.Customer1GoodEndPay);
         }
         if (DialogueManager.DialMg.RideCus02) {
-            BasicPayment(DialogueManager.DialMg.Cus2TalkCount, CustomerVariables.CusVars.C2_DisplayedPay,
-                            CustomerVariables.CusVars.Customer2GoodEndPay);
+            BasicPayment(DialogueManager.DialMg.Cus2TalkCount, CustomerVariables.CusVars.Customer2GoodEndPay);
         }
         if (DialogueManager.DialMg.RideCus03) {
-            BasicPayment(DialogueManager.DialMg.Cus3TalkCount, CustomerVariables.CusVars.C3_DisplayedPay,
-                            CustomerVariables.CusVars.Customer3GoodEndPay);
+            BasicPayment(DialogueManager.DialMg.Cus3TalkCount, CustomerVariables.CusVars.Customer3GoodEndPay);
         }
         if (DialogueManager.DialMg.RideCus04) {
-            BasicPayment(DialogueManager.DialMg.Cus4TalkCount, CustomerVariables.CusVars.C4_DisplayedPay,
-                            CustomerVariables.CusVars.Customer4GoodEndPay);
+            BasicPayment(DialogueManager.DialMg.Cus4TalkCount, CustomerVariables.CusVars.Customer4GoodEndPay);
         }
     }
 
-    public void BasicPayment(int CurrentCusTalkCount, int PayMoney, int GoodEndMoney)
+    public void BasicPayment(int CurrentCusTalkCount, int GoodEndMoney)
     {
         //calculate money earned
         if (CurrentCusTalkCount == 4) //first check if need to trigger GoodEnd Event (+ money)
-            Status_PopUp.statusMg.ReceiveMoney(PayMoney + GoodEndMoney);
-        else
-            Status_PopUp.statusMg.ReceiveMoney(PayMoney); //then resume with normal payouts
+            Status_PopUp.statusMg.ReceiveMoney(GoodEndMoney);
+        //else
+            //Status_PopUp.statusMg.ReceiveMoney(PayMoney); //then resume with normal payouts
     }
 
     //Animation Controller - taxi model

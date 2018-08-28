@@ -22,24 +22,28 @@ public class PlaceholderButtons : MonoBehaviour {
     //select customers
     public void SelectC1_BusinessMan()
     {
-        DialogueManager.DialMg.RideCus01 = true;
-        LevelManager.LvMg.oneTime = true;
-    }
+        DialogueManager.DialMg.RideCus01 = true;		
+		LevelManager.LvMg.oneTime = true;
+		GameObject.Find("SelectiveDisplay").SetActive(false);
+	}
     public void SelectC2_FemaleStudent()
     {
         DialogueManager.DialMg.RideCus02 = true;
         LevelManager.LvMg.oneTime = true;
-    }
+		GameObject.Find("SelectiveDisplay").SetActive(false);
+	}
     public void SelectC3_OldMan()
     {
         DialogueManager.DialMg.RideCus03 = true;
         LevelManager.LvMg.oneTime = true;
-    }
+		GameObject.Find("SelectiveDisplay").SetActive(false);
+	}
     public void SelectC4_PartTimer()
     {
         DialogueManager.DialMg.RideCus04 = true;
         LevelManager.LvMg.oneTime = true;
-    }
+		GameObject.Find("SelectiveDisplay").SetActive(false);
+	}
     public void SelectC5_HoodieGirl()
     {
         DialogueManager.DialMg.RideCus05 = true;

@@ -156,22 +156,22 @@ public class DialogueManager : MonoBehaviour {
         //need to show stop car animation first (if not bad end)
         if (CurrentCusTalkCount < 5)
         {
-            LevelManager.LvMg.roadMoveSpeed = 5;
-            yield return new WaitForSeconds(1.0f);
-            LevelManager.LvMg.roadMoveSpeed = 0;
-            yield return new WaitForSeconds(0.1f);
-            yield return StartCoroutine(LevelManager.LvMg.AfterRideProcess());
+            //LevelManager.LvMg.roadMoveSpeed = 5;
+            //yield return new WaitForSeconds(1.0f);
+            //LevelManager.LvMg.roadMoveSpeed = 0;
+            //yield return new WaitForSeconds(0.1f);
+            //yield return StartCoroutine(LevelManager.LvMg.AfterRideProcess());
             CurrentCusTalkCount += 1;//ADD talkcount
             PlayerPrefs.SetInt(CTC_Temp, CurrentCusTalkCount); //temp add
             Debug.Log(CustomerTalkCount + "talkcount +1: " + CurrentCusTalkCount); //display customer talk count
-            if (RideCus01)
-                RideCus01 = false;
-            if (RideCus02)
-                RideCus02 = false;
-            if (RideCus03)
-                RideCus03 = false;
-            if (RideCus04)
-                RideCus04 = false;
+        //    if (RideCus01)
+        //        RideCus01 = false;
+        //    if (RideCus02)
+        //        RideCus02 = false;
+        //    if (RideCus03)
+        //        RideCus03 = false;
+        //    if (RideCus04)
+        //        RideCus04 = false;
         }
         
         else if (CurrentCusTalkCount >= 5)
@@ -182,9 +182,11 @@ public class DialogueManager : MonoBehaviour {
             Debug.Log(CustomerTalkCount + "BadEnd +1: " + PlayerPrefs.GetInt("BadEndCount")); //display bad ends shown (int)
             LevelManager.LvMg.GameOver = true; //display Game over too
         }
-        LevelManager.LvMg.canTalk = false;
+		yield return null;
+		LevelManager.LvMg.canTalk = false;
         InitiateTalk = true;
-        LevelManager.LvMg.oneTime = true;
+		Player.playerInstance.canControl = true;
+        //LevelManager.LvMg.oneTime = true;
     }
 
 

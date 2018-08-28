@@ -11,33 +11,38 @@ public class Player : MonoBehaviour {
 	private int randomNo;//to determine the action after triggering the random event
 	public bool canControl = true; //freeze the control if something is happening
 	public static Player playerInstance = null;
-	private GameObject selectiveDisplay; 
+	//public GameObject selectiveDisplay;
 	//public GameObject gameManager;
+	public bool destinationReached;
+
+
+	private int stepCount = 1;
 
 
 	private void Awake()
 	{
 		if (playerInstance == null)
 			playerInstance = this;
+		//selectiveDisplay = GameObject.Find("SelectiveDisplay");
 	}
 
 	private void Start()
 	{
 		//gameManager = GameObject.Find("GameManager");
-		selectiveDisplay = GameObject.Find("SelectiveDisplay");
+		
 	}
 
 	private void Update()
 	{
 		#region UserInput
-		//if (canControl==true)
-		//{			
+		if (canControl)
+		{
 			if (Input.GetKeyDown("a") && blockX > 0)
 			{
 				transform.Translate(Vector3.left * movingDistance);
 				blockX -= 1;
 				GetComponent<SpriteRenderer>().flipX = true;
-				//LevelManager.LvMg.ProgressBar += 1;
+				LevelManager.LvMg.ProgressBar += stepCount;
 			}
 
 			if (Input.GetKeyDown("d") && blockX < 3)
@@ -45,22 +50,23 @@ public class Player : MonoBehaviour {
 				transform.Translate(Vector3.right * movingDistance);
 				blockX += 1;
 				GetComponent<SpriteRenderer>().flipX = false;
-				//LevelManager.LvMg.ProgressBar += 1;//move progress bar
+				LevelManager.LvMg.ProgressBar += stepCount;//move progress bar
 			}
 
 			if (Input.GetKeyDown("w") && blockY < 3)
 			{
 				transform.Translate(Vector3.up * movingDistance);
 				blockY += 1;
-				//LevelManager.LvMg.ProgressBar += 1;
+				LevelManager.LvMg.ProgressBar += stepCount;
 			}
 			if (Input.GetKeyDown("s") && blockY > 0)
 			{
 				transform.Translate(Vector3.down * movingDistance);
 				blockY -= 1;
-				//LevelManager.LvMg.ProgressBar += 1;
+				LevelManager.LvMg.ProgressBar += stepCount;
 			}
-		//}
+		}
+		
 		#endregion
 
 
@@ -73,7 +79,7 @@ public class Player : MonoBehaviour {
 		{
 			Destroy(other.gameObject);
 			Debug.Log("You triggered road block");
-			//LevelManager.LvMg.ProgressBar += 2;
+			LevelManager.LvMg.ProgressBar += (stepCount+1);
 			Status_PopUp.statusMg.EnterRoadblock();
 		}
 
@@ -81,34 +87,41 @@ public class Player : MonoBehaviour {
 		{
 			Destroy(other.gameObject);
 			Debug.Log("TALK SHIT");
-			//LevelManager.LvMg.oneTime = true;			
+			LevelManager.LvMg.canTalk = true;
+			canControl = false;
 		}
 
 		if (other.tag == "Destination")
 		{
+			destinationReached = true;
+			canControl = false;
 			Destroy(other.gameObject);
 			Debug.Log("You've reached ur destination");
-			BoardManager.boardManagerInstance.ResetBoard();
+			
 			Status_PopUp.statusMg.DestinationReached();
+			StartCoroutine(LevelManager.LvMg.DestinationArrived());
+			//BoardManager.boardManagerInstance.ResetBoard();
+
+
 		}
 		if (other.tag == "Event")
 		{
 			Destroy(other.gameObject);
 			Debug.Log("You triggered event");
 			randomNo = Random.Range(0, 4); //0 is normal route, 1 is shortcut, 2 is roadblock, 3 is tips
-			if (randomNo==1)
+			if (randomNo == 1)
 			{
 				Debug.Log("Shortut Triggered");
 				Status_PopUp.statusMg.EnterShortcut();
 				//progress bar stop moving
 			}
-			else if (randomNo==2)
+			else if (randomNo == 2)
 			{
-				Debug.Log("You triggered road block");
+				//Debug.Log("You triggered road block");
 				Status_PopUp.statusMg.EnterRoadblock();
-				//LevelManager.LvMg.ProgressBar += 2;
+				LevelManager.LvMg.ProgressBar += (stepCount + 1) * 2;
 			}
-			else if(randomNo==3)
+			else if (randomNo == 3)
 			{
 				Debug.Log("You got some tipss");
 				tipsGeneration();
@@ -121,6 +134,9 @@ public class Player : MonoBehaviour {
 			Destroy(other.gameObject);
 			Debug.Log("Shortut Triggered");
 			Status_PopUp.statusMg.EnterShortcut();
+			//int round = 2;
+			//int iniStep;
+			LevelManager.LvMg.ProgressBar -= stepCount;
 			//progress bar stop moving
 
 		}
