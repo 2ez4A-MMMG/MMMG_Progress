@@ -33,8 +33,14 @@ public class Status_PopUp : MonoBehaviour {
         //progress bar move more
         PopupSlideIn("Traffic Jam", "StatusText_DOWN");
     }
-    //extra tips
-    public void AddExtraTips(int xtraAmount)
+
+	public void DestinationReached()
+	{
+		//progress bar move more
+		PopupSlideIn("Destination Reached", "StatusText_DOWN");
+	}
+	//extra tips
+	public void AddExtraTips(int xtraAmount)
     {
         //add extra money into your pay
         PopupSlideIn("Extra $" + xtraAmount.ToString() + " Tips", "StatusText_UP");
