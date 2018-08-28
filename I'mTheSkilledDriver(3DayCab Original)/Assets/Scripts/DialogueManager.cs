@@ -15,13 +15,17 @@ public class DialogueManager : MonoBehaviour {
     public bool RideCus04 = false;
     public bool RideCus05 = false;
 
-    public bool SkipButtonPressed = false;
+    public GameObject HoodieGirl_jsImg;
 
+    public bool SkipButtonPressed = false;
     public int Cus1TalkCount, Cus2TalkCount, Cus3TalkCount, Cus4TalkCount;
     private bool InitiateTalk;
 
     // Use this for initialization
     void Awake () {
+
+        HoodieGirl_jsImg.SetActive(false);
+
         if (!PlayerPrefs.HasKey("Cus1TalkCount") || !PlayerPrefs.HasKey("Cus2TalkCount") || 
             !PlayerPrefs.HasKey("Cus3TalkCount") || !PlayerPrefs.HasKey("Cus4TalkCount"))
         {
@@ -126,10 +130,14 @@ public class DialogueManager : MonoBehaviour {
                 }
                 InitiateTalk = false;
             }
+            if (RideCus05)
+            {
+                rpgTalk.NewTalk("Customer5_START", "Customer5_END", rpgTalk.txtToParse, this, "Cus5FinalTalkCutScene1"); //set cutscene for this girl
+                InitiateTalk = false;
+            }
         }
 
-        //if skip button's pressed, skip chat
-        //only bad ends (chats no.5) cannot be skipped
+        //if skip button's pressed, skip chat. only bad ends (chats no.5) cannot be skipped
         if (SkipButtonPressed)
         {
             if (Cus1TalkCount <= 4  && RideCus01 || Cus2TalkCount <= 4 && RideCus02 || 
@@ -142,23 +150,19 @@ public class DialogueManager : MonoBehaviour {
 	}
 
     //declare after talk with customers (for all possible conditions)
-    public IEnumerator AfterTalk(int CurrentCusTalkCount, string CustomerTalkCount, string CTC_Temp, int PayMoney, int GoodEndMoney, string badendData)
+    public IEnumerator AfterTalk(int CurrentCusTalkCount, string CustomerTalkCount, string CTC_Temp, string badendData)
     {
         //need to show stop car animation first (if not bad end)
         if (CurrentCusTalkCount < 5)
         {
+            LevelManager.LvMg.roadMoveSpeed = 5;
             yield return new WaitForSeconds(1.0f);
             LevelManager.LvMg.roadMoveSpeed = 0;
             yield return new WaitForSeconds(0.1f);
-            if (CurrentCusTalkCount == 4) //first check if need to trigger GoodEnd Event (+ money)
-                LevelManager.LvMg.ReceiveReward(PayMoney + GoodEndMoney);
-            else
-                LevelManager.LvMg.ReceiveReward(PayMoney); //then resume with normal payouts (no pay at BadEnd)
-            yield return new WaitForSeconds(0.5f);
+            yield return StartCoroutine(LevelManager.LvMg.AfterRideProcess());
             CurrentCusTalkCount += 1;//ADD talkcount
             PlayerPrefs.SetInt(CTC_Temp, CurrentCusTalkCount); //temp add
             Debug.Log(CustomerTalkCount + "talkcount +1: " + CurrentCusTalkCount); //display customer talk count
-            yield return StartCoroutine(LevelManager.LvMg.AfterRideProcess());
             if (RideCus01)
                 RideCus01 = false;
             if (RideCus02)
@@ -185,29 +189,30 @@ public class DialogueManager : MonoBehaviour {
 
     public void AfterCusTalk()
     {
-        if (RideCus01)
-        {
-            StartCoroutine(AfterTalk(Cus1TalkCount, "Cus1TalkCount", "C1TC_Temp", CustomerVariables.CusVars.C1_DisplayedPay, 
-                CustomerVariables.CusVars.Customer1GoodEndPay, "Cus1BadEnd"));
+        if (RideCus01) {
+            StartCoroutine(AfterTalk(Cus1TalkCount, "Cus1TalkCount", "C1TC_Temp", "Cus1BadEnd"));
         }
-
-        else if (RideCus02)
-        {
-            StartCoroutine(AfterTalk(Cus2TalkCount, "Cus2TalkCount", "C2TC_Temp", CustomerVariables.CusVars.C2_DisplayedPay, 
-                CustomerVariables.CusVars.Customer2GoodEndPay, "Cus2BadEnd"));
+        else if (RideCus02) {
+            StartCoroutine(AfterTalk(Cus2TalkCount, "Cus2TalkCount", "C2TC_Temp", "Cus2BadEnd"));
         }
-        else if (RideCus03)
-        {
-            StartCoroutine(AfterTalk(Cus3TalkCount, "Cus3TalkCount", "C3TC_Temp", CustomerVariables.CusVars.C3_DisplayedPay, 
-                CustomerVariables.CusVars.Customer3GoodEndPay, "Cus3BadEnd"));
+        else if (RideCus03) {
+            StartCoroutine(AfterTalk(Cus3TalkCount, "Cus3TalkCount", "C3TC_Temp", "Cus3BadEnd"));
         }
-        else if (RideCus04)
-        {
-            StartCoroutine(AfterTalk(Cus4TalkCount, "Cus4TalkCount", "C4TC_Temp", CustomerVariables.CusVars.C4_DisplayedPay, 
-                CustomerVariables.CusVars.Customer4GoodEndPay, "Cus4BadEnd"));
+        else if (RideCus04) {
+            StartCoroutine(AfterTalk(Cus4TalkCount, "Cus4TalkCount", "C4TC_Temp", "Cus4BadEnd"));
         }
         else
             return;
+    }
+    //for customer 05 (hoodie girl only)
+    public void AfterFinalTalk()
+    {
+        PlayerPrefs.SetInt("BadEndCount", PlayerPrefs.GetInt("BadEndCount") + 1);
+        Debug.Log("Final BadEnd (5) == " + PlayerPrefs.GetInt("BadEndCount")); //display bad ends shown (int)
+        LevelManager.LvMg.GameOver = true; //display Game over too
+        //LevelManager.LvMg.canTalk = false;
+        //InitiateTalk = true;
+        //LevelManager.LvMg.oneTime = true;
     }
     //END of declare
 
@@ -353,6 +358,29 @@ public class DialogueManager : MonoBehaviour {
     }
 
     //for Cus5, Final Talk
+    public void Cus5FinalTalkCutScene1()
+    {
+        StopAllCoroutines();
+        StartCoroutine(C5FTCut1Timings());
+    }
+
+    public IEnumerator C5FTCut1Timings()
+    {
+        //InGame>[Screen suddenly shows enlarged version of the Hoodie Girl’s face, seemingly horrible as if being crashed]
+        //image setactive
+        HoodieGirl_jsImg.SetActive(true);
+        //run animation by animator
+        //play glitch sound effect
+        SoundManager.soundMg.Play_sfx(SoundManager.soundMg.glitching_sfx, 1.0f);
+        //yield return new WaitForSeconds(SoundManager.soundMg.glitching_sfx.length);
+        //yield return animation length
+        //InGame>[The car suddenly moves at a high speed, then screen fades black, then a car crash sound happen]
+        //roadmovespeed increase
+        //fade('null')
+        //car crash sound
+        //AfterFinalTalk()
+        yield return new WaitForSeconds(1.0f);
+    }
 
     //save all customertalkCounts on the playerprefs
     public void SaveAll_CusTalkCounts()

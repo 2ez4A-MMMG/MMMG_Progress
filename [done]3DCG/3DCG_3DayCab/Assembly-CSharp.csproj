@@ -99,10 +99,10 @@
     <None Include="Assets\Scripts\Dialogue\carRadioReports.txt" />
     <None Include="Assets\RPGTALK\ReadMe.txt" />
     <Reference Include="UnityEditor.StandardEvents">
-      <HintPath>C:/Users/Ang CS/Documents/GitHub/MMMG_Progress/3DCG_3DayCab/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
+      <HintPath>C:/Users/Ang CS/Documents/GitHub/MMMG_Progress/[done]3DCG/3DCG_3DayCab/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
     </Reference>
     <Reference Include="Unity.PackageManagerUI.Editor">
-      <HintPath>C:/Users/Ang CS/Documents/GitHub/MMMG_Progress/3DCG_3DayCab/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
+      <HintPath>C:/Users/Ang CS/Documents/GitHub/MMMG_Progress/[done]3DCG/3DCG_3DayCab/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>C:/Program Files/Unity/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>

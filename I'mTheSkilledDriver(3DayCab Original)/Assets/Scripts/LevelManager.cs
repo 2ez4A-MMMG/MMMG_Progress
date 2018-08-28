@@ -29,7 +29,6 @@ public class LevelManager : MonoBehaviour {
 
     //UI parts
     [Header("UI Parts")]
-    public GameObject StatusPopup; //display Status popup
     public GameObject BeforeLvDayDisplay;
     public Text DayDisplay;
     public Text MoneyDisplay;
@@ -45,6 +44,7 @@ public class LevelManager : MonoBehaviour {
     public GameObject c2_femaleStudent;
     public GameObject c3_oldMan;
     public GameObject c4_partTimer;
+    public GameObject cSecret_hoodieGirl;
 
     private bool dayStartRunning;
     private bool dayEnding;
@@ -54,7 +54,7 @@ public class LevelManager : MonoBehaviour {
         roadMoveSpeed = 0;
         canTalk = false;
         GameClear = GameOver = false;
-        StatusPopup.SetActive(false);
+        //StatusPopup.SetActive(false);
         //if cannot reteive saved day count, set a new one
         if (!PlayerPrefs.HasKey("DayCount")) {
             PlayerPrefs.SetInt("DayCount", 1);
@@ -75,7 +75,7 @@ public class LevelManager : MonoBehaviour {
         }
         Text BeforeDayDisplayText = BeforeLvDayDisplay.GetComponent<Text>();
         BeforeDayDisplayText.text = "Day " + Day.ToString();
-        if (PlayerPrefs.GetInt("BadEndCount") != 4)
+        if (PlayerPrefs.GetInt("BadEndCount") != 5)
             StartCoroutine(dayStart());
     }
 	
@@ -168,6 +168,13 @@ public class LevelManager : MonoBehaviour {
             CusAnim = customer.GetComponent<Animator>();
             CusAnim.Play("PTEnterTaxi");
         }
+        else if (DialogueManager.DialMg.RideCus05)
+        {
+            //spawn customer 5 (secret)
+            customer = Instantiate(cSecret_hoodieGirl, customerSpawner.transform.position, customerSpawner.transform.rotation);
+            CusAnim = customer.GetComponent<Animator>();
+            CusAnim.Play("HgEnterTaxi");
+        }
         yield return new WaitForSeconds(CusAnim.GetCurrentAnimatorStateInfo(0).length - SoundManager.soundMg.closeCarDoor_sfx.length);
         SoundManager.soundMg.sfx_source.PlayOneShot(SoundManager.soundMg.closeCarDoor_sfx, 1.0f);
         yield return new WaitForSeconds(SoundManager.soundMg.closeCarDoor_sfx.length);
@@ -186,6 +193,10 @@ public class LevelManager : MonoBehaviour {
         //progress bar
         int pBValue = Random.Range(5, 10); //pBValue = 1 step initially
         ProgressBar += pBValue; //initial progressValue
+
+        //calculate money earned
+        AfterRidePayment();
+        yield return new WaitForSeconds(0.5f);
 
         SoundManager.soundMg.sfx_source.PlayOneShot(SoundManager.soundMg.closeCarDoor_sfx, 1.0f);
         yield return new WaitForSeconds(1.0f);
@@ -250,27 +261,33 @@ public class LevelManager : MonoBehaviour {
         dayEnding = false;
     }
 
-    public void ReceiveReward(int amount) //add money to your keep - temporary
+    public void AfterRidePayment()
     {
-        Money += amount;
-        PopupSlideIn("$" + amount.ToString() + " Get", "StatusText_UP");
+        if (DialogueManager.DialMg.RideCus01) {
+            BasicPayment(DialogueManager.DialMg.Cus1TalkCount, CustomerVariables.CusVars.C1_DisplayedPay,
+                            CustomerVariables.CusVars.Customer1GoodEndPay);
+        }
+        if (DialogueManager.DialMg.RideCus02) {
+            BasicPayment(DialogueManager.DialMg.Cus2TalkCount, CustomerVariables.CusVars.C2_DisplayedPay,
+                            CustomerVariables.CusVars.Customer2GoodEndPay);
+        }
+        if (DialogueManager.DialMg.RideCus03) {
+            BasicPayment(DialogueManager.DialMg.Cus3TalkCount, CustomerVariables.CusVars.C3_DisplayedPay,
+                            CustomerVariables.CusVars.Customer3GoodEndPay);
+        }
+        if (DialogueManager.DialMg.RideCus04) {
+            BasicPayment(DialogueManager.DialMg.Cus4TalkCount, CustomerVariables.CusVars.C4_DisplayedPay,
+                            CustomerVariables.CusVars.Customer4GoodEndPay);
+        }
     }
 
-    //Animation Controller - status popup
-    public void PopupSlideIn(string popup_text, string AnimName)
+    public void BasicPayment(int CurrentCusTalkCount, int PayMoney, int GoodEndMoney)
     {
-        StartCoroutine(SpawnPopUp(popup_text, AnimName));
-    }
-
-    IEnumerator SpawnPopUp(string popup_text, string playAnim)
-    {
-        StatusPopup.SetActive(true);
-        Text PopUpText = StatusPopup.GetComponentInChildren<Text>();
-        PopUpText.text = popup_text;
-        Animator PopUpAnim = StatusPopup.GetComponent<Animator>();
-        PopUpAnim.Play(playAnim);
-        yield return new WaitForSeconds(PopUpAnim.GetCurrentAnimatorStateInfo(0).length);
-        StatusPopup.SetActive(false);
+        //calculate money earned
+        if (CurrentCusTalkCount == 4) //first check if need to trigger GoodEnd Event (+ money)
+            Status_PopUp.statusMg.ReceiveMoney(PayMoney + GoodEndMoney);
+        else
+            Status_PopUp.statusMg.ReceiveMoney(PayMoney); //then resume with normal payouts
     }
 
     //Animation Controller - taxi model

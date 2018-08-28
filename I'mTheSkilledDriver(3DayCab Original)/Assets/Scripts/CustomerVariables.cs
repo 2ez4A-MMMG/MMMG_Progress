@@ -44,17 +44,9 @@ public class CustomerVariables : MonoBehaviour {
     public int Customer4GoodEndPay = 2000;
     public int C4_DisplayedPay;//set the price before customer selection
 
-    [Header("Customer5(secret) Variables")] //???
-    public bool canAppear = false;
-
     // Use this for initialization
     void Awake () {
         CusVars = this;
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
 	}
 
     //customer selection functions + set price per ride

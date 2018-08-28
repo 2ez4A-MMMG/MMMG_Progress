@@ -40,6 +40,11 @@ public class PlaceholderButtons : MonoBehaviour {
         DialogueManager.DialMg.RideCus04 = true;
         LevelManager.LvMg.oneTime = true;
     }
+    public void SelectC5_HoodieGirl()
+    {
+        DialogueManager.DialMg.RideCus05 = true;
+        LevelManager.LvMg.oneTime = true;
+    }
 
     //skip chats 1-4
     public void skipChat124()
@@ -52,7 +57,6 @@ public class PlaceholderButtons : MonoBehaviour {
         StartCoroutine(FadeLoader.FadeSLoad.Fading(FadeLoader.FadeSLoad.TitleScreen));
     }
     
-
     //Title Screen
     public void StartGame()
     {

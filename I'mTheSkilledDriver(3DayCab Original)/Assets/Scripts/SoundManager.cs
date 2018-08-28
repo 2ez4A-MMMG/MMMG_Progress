@@ -19,15 +19,11 @@ public class SoundManager : MonoBehaviour {
     public AudioClip gunShot_sfx;
     public AudioClip openCarDoor_sfx;
     public AudioClip closeCarDoor_sfx;
+    public AudioClip glitching_sfx;
 
     // Use this for initialization
     void Awake () {
         soundMg = this;
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
 	}
 
     //Audio Controller - playsoundeffectsONCE
