@@ -54,6 +54,13 @@ public class GameEndDialogues : MonoBehaviour {
                 runOneTime = false;
                 PlayerPrefs.SetString("Cus4BadEnd", "yes_shown");
             }
+            else if (PlayerPrefs.GetInt("BadEndCount") >= 5)
+            {
+                ChangeTalkContent("Customer5_BEStart", "Customer5_BEEnd");
+                ChangeTalkCallback("StartShowingGameStatus");
+                startTalk = true;
+                runOneTime = false;
+            }
         }
     }
 
