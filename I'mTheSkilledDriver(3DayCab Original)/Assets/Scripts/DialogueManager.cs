@@ -372,14 +372,20 @@ public class DialogueManager : MonoBehaviour {
         //run animation by animator
         //play glitch sound effect
         SoundManager.soundMg.Play_sfx(SoundManager.soundMg.glitching_sfx, 1.0f);
-        //yield return new WaitForSeconds(SoundManager.soundMg.glitching_sfx.length);
-        //yield return animation length
+        yield return new WaitForSeconds(5.0f);
         //InGame>[The car suddenly moves at a high speed, then screen fades black, then a car crash sound happen]
         //roadmovespeed increase
-        //fade('null')
-        //car crash sound
-        //AfterFinalTalk()
+        LevelManager.LvMg.roadMoveSpeed = 12;
         yield return new WaitForSeconds(1.0f);
+        HoodieGirl_jsImg.SetActive(false);
+        //fade('null')
+        yield return new WaitForSeconds(0.5f);
+        yield return StartCoroutine(FadeLoader.FadeSLoad.Fading("null"));
+        //car crash sound
+        SoundManager.soundMg.Play_sfx(SoundManager.soundMg.carCrash_sfx, 1.0f);
+        yield return new WaitForSeconds(SoundManager.soundMg.carCrash_sfx.length);
+        //AfterFinalTalk()
+        AfterFinalTalk();
     }
 
     //save all customertalkCounts on the playerprefs

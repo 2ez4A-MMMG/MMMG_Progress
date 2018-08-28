@@ -8,7 +8,7 @@ public class FinalBlockCover : MonoBehaviour {
     public int badEndCount = 4;
 
     public bool exactNo = true;
-    public bool moreThan = false;
+    public bool moreThan_equalTo = false;
 
     // Use this for initialization
     void Awake () {
@@ -21,7 +21,7 @@ public class FinalBlockCover : MonoBehaviour {
             if (PlayerPrefs.GetInt("BadEndCount") == badEndCount)
                 Change.SetActive(true);
 
-        if (moreThan)
+        if (moreThan_equalTo)
             if (PlayerPrefs.GetInt("BadEndCount") >= badEndCount)
                 Change.SetActive(true);
     }

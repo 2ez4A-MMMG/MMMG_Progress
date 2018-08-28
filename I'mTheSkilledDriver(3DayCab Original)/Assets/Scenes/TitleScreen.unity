@@ -3972,8 +3972,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Change: {fileID: 1281939427}
   badEndCount: 4
-  exactNo: 1
-  moreThan: 0
+  exactNo: 0
+  moreThan_equalTo: 1
 --- !u!114 &1763702146
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4001,8 +4001,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Change: {fileID: 1534075708}
   badEndCount: 4
-  exactNo: 1
-  moreThan: 0
+  exactNo: 0
+  moreThan_equalTo: 1
 --- !u!1 &1772639385
 GameObject:
   m_ObjectHideFlags: 0
