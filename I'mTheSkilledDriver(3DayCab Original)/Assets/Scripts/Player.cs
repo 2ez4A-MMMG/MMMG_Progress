@@ -104,7 +104,7 @@ public class Player : MonoBehaviour {
 							GetComponent<SpriteRenderer>().flipX = false;
 							LevelManager.LvMg.ProgressBar += stepCount;//move progress bar
 						}
-						else if ((lp.x > fp.x) && blockX>0)
+						else if ((lp.x < fp.x) && blockX>0)
 						{   //Left swipe
 							transform.Translate(Vector3.left * movingDistance);
 							blockX -= 1;
@@ -121,7 +121,7 @@ public class Player : MonoBehaviour {
 							LevelManager.LvMg.ProgressBar += stepCount;
 
 						}
-						else if (lp.y > fp.y && blockY >0)
+						else if (lp.y < fp.y && blockY >0)
 						{   //Down swipe
 							transform.Translate(Vector3.down * movingDistance);
 							blockY -= 1;
@@ -176,9 +176,13 @@ public class Player : MonoBehaviour {
 			Destroy(other.gameObject);
 			Debug.Log("You triggered event");
 			randomNo = Random.Range(0, 4); //0 is normal route, 1 is shortcut, 2 is roadblock, 3 is tips
-			if (randomNo == 1)
+            if (randomNo == 0)
+            {
+                Status_PopUp.statusMg.NothingHappened();
+            }
+            if (randomNo == 1)
 			{
-				Debug.Log(randomNo.ToString() + "Shortut Triggered");
+				Debug.Log(randomNo.ToString() + "Shortut");
 				Status_PopUp.statusMg.EnterShortcut();
 				//progress bar stop moving
 			}
@@ -201,8 +205,6 @@ public class Player : MonoBehaviour {
 			Destroy(other.gameObject);
 			Debug.Log("Shortut Triggered");
 			Status_PopUp.statusMg.EnterShortcut();
-			//int round = 2;
-			//int iniStep;
 			LevelManager.LvMg.ProgressBar -= stepCount;
 			//progress bar stop moving
 

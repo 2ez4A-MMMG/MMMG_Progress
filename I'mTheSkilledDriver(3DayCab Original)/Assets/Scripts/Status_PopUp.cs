@@ -21,17 +21,22 @@ public class Status_PopUp : MonoBehaviour {
         Debug.Log("Money Obtained: $" + amount.ToString());
     }
 
+    //nothing happened
+    public void NothingHappened()
+    {
+        PopupSlideIn("nothing", "StatusText_UP");
+    }
     //shortcut
     public void EnterShortcut()
     {
         //progress bar didn't move
-        PopupSlideIn("Shortcut Found", "StatusText_UP");
+        PopupSlideIn("Shortcut", "StatusText_UP");
     }
     //roadblock
     public void EnterRoadblock()
     {
         //progress bar move more
-        PopupSlideIn("Traffic Jam", "StatusText_DOWN");
+        PopupSlideIn("RoadBlocks", "StatusText_DOWN");
     }
 
 	public void DestinationReached()
@@ -44,7 +49,7 @@ public class Status_PopUp : MonoBehaviour {
     {
 		//add extra money into your pay
 		LevelManager.LvMg.Money += xtraAmount;
-		PopupSlideIn("Extra $" + xtraAmount.ToString() + " Tips", "StatusText_UP");
+		PopupSlideIn("$" + xtraAmount.ToString() + " Tips", "StatusText_UP");
 		Debug.Log("Tips Obtained: $" + xtraAmount.ToString());
 	}
 
