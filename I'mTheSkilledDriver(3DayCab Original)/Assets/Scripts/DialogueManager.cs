@@ -142,7 +142,7 @@ public class DialogueManager : MonoBehaviour {
         if (SkipButtonPressed)
         {
             if (Cus1TalkCount <= 4  && RideCus01 || Cus2TalkCount <= 4 && RideCus02 || 
-                Cus3TalkCount <= 4 && RideCus03 || Cus4TalkCount <= 4 && RideCus04) //need to fix
+                Cus3TalkCount <= 4 && RideCus03 || Cus4TalkCount <= 4 && RideCus04)
             {
                 rpgTalk.EndTalk();
             }
@@ -151,27 +151,16 @@ public class DialogueManager : MonoBehaviour {
 	}
 
     //declare after talk with customers (for all possible conditions)
-    public IEnumerator AfterTalk(int CurrentCusTalkCount, string CustomerTalkCount, string CTC_Temp, string badendData)
+    public IEnumerator AfterTalk(int CurrentCusTalkCount, string CustomerTalkCount, string CTC_Temp, string badendData, int GoodEndMoney)
     {
         //need to show stop car animation first (if not bad end)
         if (CurrentCusTalkCount < 5)
         {
-            //LevelManager.LvMg.roadMoveSpeed = 5;
-            //yield return new WaitForSeconds(1.0f);
-            //LevelManager.LvMg.roadMoveSpeed = 0;
-            //yield return new WaitForSeconds(0.1f);
-            //yield return StartCoroutine(LevelManager.LvMg.AfterRideProcess());
+            if (CurrentCusTalkCount == 4)
+                Status_PopUp.statusMg.ReceiveMoney(GoodEndMoney);
             CurrentCusTalkCount += 1;//ADD talkcount
             PlayerPrefs.SetInt(CTC_Temp, CurrentCusTalkCount); //temp add
             Debug.Log(CustomerTalkCount + "talkcount +1: " + CurrentCusTalkCount); //display customer talk count
-        //    if (RideCus01)
-        //        RideCus01 = false;
-        //    if (RideCus02)
-        //        RideCus02 = false;
-        //    if (RideCus03)
-        //        RideCus03 = false;
-        //    if (RideCus04)
-        //        RideCus04 = false;
         }
         
         else if (CurrentCusTalkCount >= 5)
@@ -193,16 +182,16 @@ public class DialogueManager : MonoBehaviour {
     public void AfterCusTalk()
     {
         if (RideCus01) {
-            StartCoroutine(AfterTalk(Cus1TalkCount, "Cus1TalkCount", "C1TC_Temp", "Cus1BadEnd"));
+            StartCoroutine(AfterTalk(Cus1TalkCount, "Cus1TalkCount", "C1TC_Temp", "Cus1BadEnd", CustomerVariables.CusVars.Customer1GoodEndPay));
         }
         else if (RideCus02) {
-            StartCoroutine(AfterTalk(Cus2TalkCount, "Cus2TalkCount", "C2TC_Temp", "Cus2BadEnd"));
+            StartCoroutine(AfterTalk(Cus2TalkCount, "Cus2TalkCount", "C2TC_Temp", "Cus2BadEnd", CustomerVariables.CusVars.Customer2GoodEndPay));
         }
         else if (RideCus03) {
-            StartCoroutine(AfterTalk(Cus3TalkCount, "Cus3TalkCount", "C3TC_Temp", "Cus3BadEnd"));
+            StartCoroutine(AfterTalk(Cus3TalkCount, "Cus3TalkCount", "C3TC_Temp", "Cus3BadEnd", CustomerVariables.CusVars.Customer3GoodEndPay));
         }
         else if (RideCus04) {
-            StartCoroutine(AfterTalk(Cus4TalkCount, "Cus4TalkCount", "C4TC_Temp", "Cus4BadEnd"));
+            StartCoroutine(AfterTalk(Cus4TalkCount, "Cus4TalkCount", "C4TC_Temp", "Cus4BadEnd", CustomerVariables.CusVars.Customer4GoodEndPay));
         }
         else
             return;
@@ -384,6 +373,7 @@ public class DialogueManager : MonoBehaviour {
         yield return new WaitForSeconds(0.3f);
         HoodieGirl_jsImg.SetActive(false);
         SoundManager.soundMg.sfx_source.Stop();
+        SoundManager.soundMg.sfx_source.loop = false;
         LevelManager.LvMg.roadMoveSpeed = 12;
         yield return new WaitForSeconds(0.5f);
         LevelManager.LvMg.roadMoveSpeed = 20;

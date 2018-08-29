@@ -102,11 +102,15 @@ public class BoardManager : MonoBehaviour
 	{
 		StartCoroutine(SetupSceneCoroutine());
 		SpawnPlayer();
+
 		board = GameObject.Find("Board");
-		board.SetActive(false);
+        board.SetActive(false);
+
 		playerP = GameObject.Find("PlayerPrefab(Clone)");
-		playerP.SetActive(false);
-	}
+        playerP.SetActive(false);
+
+        Debug.Log("setupscene()-> board.setActive false");
+    }
 
 	public IEnumerator SetupSceneCoroutine()
 	{
@@ -135,8 +139,9 @@ public class BoardManager : MonoBehaviour
 		Destroy(board);
 		StartCoroutine(SetupSceneCoroutine());
 		board = GameObject.Find("Board");
-		board.SetActive(true);
-		Player.playerInstance.destinationReached = false;
+        board.SetActive(true);
+        Debug.Log("customerselected()-> board.setActive true");
+        Player.playerInstance.destinationReached = false;
 	}
 
 

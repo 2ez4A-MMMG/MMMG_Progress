@@ -16,6 +16,7 @@ public class GameEndDialogues : MonoBehaviour {
         GameStatus.SetActive(false);
         startTalk = false;
         runOneTime = true;
+        rpgtalk.startOnAwake = false;
     }
 
     void Start()

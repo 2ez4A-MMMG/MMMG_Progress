@@ -178,19 +178,19 @@ public class Player : MonoBehaviour {
 			randomNo = Random.Range(0, 4); //0 is normal route, 1 is shortcut, 2 is roadblock, 3 is tips
 			if (randomNo == 1)
 			{
-				Debug.Log("Shortut Triggered");
+				Debug.Log(randomNo.ToString() + "Shortut Triggered");
 				Status_PopUp.statusMg.EnterShortcut();
 				//progress bar stop moving
 			}
 			else if (randomNo == 2)
 			{
-				//Debug.Log("You triggered road block");
+				Debug.Log(randomNo.ToString() + "You triggered road block");
 				Status_PopUp.statusMg.EnterRoadblock();
 				LevelManager.LvMg.ProgressBar += (stepCount + 1) * 2;
 			}
 			else if (randomNo == 3)
 			{
-				Debug.Log("You got some tipss");
+				Debug.Log(randomNo.ToString() + "You got some tipss");
 				tipsGeneration();
 				//generate tips
 			}

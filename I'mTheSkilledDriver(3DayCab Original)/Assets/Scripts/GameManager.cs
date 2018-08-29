@@ -16,7 +16,7 @@ public class GameManager : MonoBehaviour {
 		else if (managerInstance != this)
 			Destroy(gameObject);
 
-		DontDestroyOnLoad(gameObject); //make sure it doesn't destroy when scene change
+		//DontDestroyOnLoad(gameObject); //make sure it doesn't destroy when scene change
 		boardScript = GetComponent<BoardManager>();
 		InitGame();
 	}
