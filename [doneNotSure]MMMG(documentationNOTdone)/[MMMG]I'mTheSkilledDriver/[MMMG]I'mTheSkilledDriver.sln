@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "[MMMG]I'mTheSkilledDriver", "Assembly-CSharp.csproj", "{8C7862BC-23B3-9077-F2E8-D1D0E017E619}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "[MMMG]I'mTheSkilledDriver", "Assembly-CSharp-Editor.csproj", "{6BC23F18-DF65-FA25-36BF-B397A9831818}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8C7862BC-23B3-9077-F2E8-D1D0E017E619}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8C7862BC-23B3-9077-F2E8-D1D0E017E619}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8C7862BC-23B3-9077-F2E8-D1D0E017E619}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8C7862BC-23B3-9077-F2E8-D1D0E017E619}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6BC23F18-DF65-FA25-36BF-B397A9831818}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6BC23F18-DF65-FA25-36BF-B397A9831818}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6BC23F18-DF65-FA25-36BF-B397A9831818}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6BC23F18-DF65-FA25-36BF-B397A9831818}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
