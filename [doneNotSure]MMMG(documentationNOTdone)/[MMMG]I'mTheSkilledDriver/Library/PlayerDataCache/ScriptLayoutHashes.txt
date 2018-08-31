@@ -1,6 +1,6 @@
-Android
+WindowsStandalone
 PlayerPath?
-C:/Users/Ang CS/Documents/GitHub/MMMG_Progress/[MMMG]I'mTheSkilledDriver/[Android]ITSDriver/ImTheSkilledDriver.apk
+C:/Users/Ang CS/Documents/GitHub/MMMG_Progress/[doneNotSure]MMMG(documentationNOTdone)/[MMMG]I'mTheSkilledDriver/[PC]TSDriver/[PC]TSDriver.exe
 SceneListBegin?
 Assets/Scenes/TitleScreen.unity
 Assets/Scenes/SampleScene.unity

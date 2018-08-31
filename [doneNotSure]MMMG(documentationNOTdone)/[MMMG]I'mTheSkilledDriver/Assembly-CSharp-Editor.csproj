@@ -78,10 +78,10 @@
     <Compile Include="Assets\[IMPORTS]\Standard Assets\Editor\ImageEffects\TonemappingEditor.cs" />
     <Compile Include="Assets\[IMPORTS]\Standard Assets\Editor\ImageEffects\VignetteAndChromaticAberrationEditor.cs" />
     <Reference Include="UnityEditor.StandardEvents">
-      <HintPath>C:/Users/Ang CS/Documents/GitHub/MMMG_Progress/[MMMG]I'mTheSkilledDriver/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
+      <HintPath>C:/Users/Ang CS/Documents/GitHub/MMMG_Progress/[doneNotSure]MMMG(documentationNOTdone)/[MMMG]I'mTheSkilledDriver/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
     </Reference>
     <Reference Include="Unity.PackageManagerUI.Editor">
-      <HintPath>C:/Users/Ang CS/Documents/GitHub/MMMG_Progress/[MMMG]I'mTheSkilledDriver/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
+      <HintPath>C:/Users/Ang CS/Documents/GitHub/MMMG_Progress/[doneNotSure]MMMG(documentationNOTdone)/[MMMG]I'mTheSkilledDriver/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>C:/Program Files/Unity/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
