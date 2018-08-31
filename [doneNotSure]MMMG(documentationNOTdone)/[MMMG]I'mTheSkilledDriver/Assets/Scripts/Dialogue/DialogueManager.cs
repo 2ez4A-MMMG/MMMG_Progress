@@ -171,11 +171,10 @@ public class DialogueManager : MonoBehaviour {
             Debug.Log(CustomerTalkCount + "BadEnd +1: " + PlayerPrefs.GetInt("BadEndCount")); //display bad ends shown (int)
             LevelManager.LvMg.GameOver = true; //display Game over too
         }
-		yield return null;
-		LevelManager.LvMg.canTalk = false;
         InitiateTalk = true;
-		Player.playerInstance.canControl = true;
-        //LevelManager.LvMg.oneTime = true;
+        yield return new WaitForSeconds(0.2f);
+        LevelManager.LvMg.canTalk = false;
+        Player.playerInstance.canControl = true;
     }
 
 

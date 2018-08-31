@@ -327,10 +327,6 @@ public class LevelManager : MonoBehaviour {
 
     public void BasicPayment(int CurrentCusTalkCount, int PayMoney)
     {
-        //calculate money earned
-        //if (CurrentCusTalkCount == 4) //first check if need to trigger GoodEnd Event (+ money)
-            //Status_PopUp.statusMg.ReceiveMoney(GoodEndMoney);
-        //else
         Status_PopUp.statusMg.ReceiveMoney(PayMoney); //then resume with normal payouts
     }
 
