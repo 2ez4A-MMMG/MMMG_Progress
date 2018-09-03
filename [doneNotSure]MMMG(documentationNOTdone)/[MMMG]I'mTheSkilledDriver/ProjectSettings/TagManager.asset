@@ -13,6 +13,7 @@ TagManager:
   - Tips
   - Border
   - FlashTrigger
+  - SurfaceCover
   layers:
   - Default
   - TransparentFX

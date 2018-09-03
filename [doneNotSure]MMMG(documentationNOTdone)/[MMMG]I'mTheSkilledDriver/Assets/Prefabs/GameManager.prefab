@@ -70,8 +70,14 @@ MonoBehaviour:
     type: 2}
   speechBubbleTiles: {fileID: 1432217328424624, guid: 34b291e9e515a9849b9a86fe32fd0e58,
     type: 2}
+  surfaceCoverTiles: {fileID: 1805373626730610, guid: 6be548711d571624093f622306b6638c,
+    type: 2}
   playerPrefab: {fileID: 1675418437486054, guid: 82033869a490915468bc1883bc97c25b,
     type: 2}
+  board: {fileID: 0}
+  playerP: {fileID: 0}
+  initial_XOffset: 0
+  initial_YOffset: 0.3
 --- !u!114 &114932827154462336
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -84,11 +90,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boardScript: {fileID: 0}
-  dayCountText: {fileID: 0}
-  stepsCountText: {fileID: 0}
-  dayCount: 0
-  stepsCountMax: 30
-  stepsCount: 0
-  tips: 0
-  tipsMax: 100
-  tipsMin: 50

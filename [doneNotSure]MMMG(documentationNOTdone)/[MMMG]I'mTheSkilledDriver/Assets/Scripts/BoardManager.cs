@@ -17,8 +17,9 @@ public class BoardManager : MonoBehaviour
 	public GameObject randomEventsTiles;
 	public GameObject shortcutTiles;
 	public GameObject speechBubbleTiles;
+    public GameObject surfaceCoverTiles;
 
-	private Transform boardHolder; //collapse everything in here
+    private Transform boardHolder; //collapse everything in here
 	private List<Vector3> gridPositions = new List<Vector3>();
 	private GameObject playerHolder;
 
@@ -64,7 +65,8 @@ public class BoardManager : MonoBehaviour
 			for (int y = 0; y < rows; y++)
 			{
 				GameObject toInstantiate = roadTiles[UnityEngine.Random.Range(0, roadTiles.Length)]; //randomly select one of the sprite from the list
-				toInstantiate.GetComponent<SpriteRenderer>().color = Color.black;
+                //toInstantiate.GetComponent<SpriteRenderer>().color = Color.black;
+                Instantiate(surfaceCoverTiles, new Vector3(x + initial_XOffset, y + initial_YOffset, -1f), Quaternion.identity);
 				if (x == -1 || x == columns)
 				{
 					toInstantiate = outerWallTiles[UnityEngine.Random.Range(0, outerWallTiles.Length)];

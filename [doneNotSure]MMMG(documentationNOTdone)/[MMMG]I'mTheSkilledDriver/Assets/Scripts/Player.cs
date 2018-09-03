@@ -11,8 +11,6 @@ public class Player : MonoBehaviour {
 	private int randomNo;//to determine the action after triggering the random event
 	public bool canControl = true; //freeze the control if something is happening
 	public static Player playerInstance = null;
-	//public GameObject selectiveDisplay;
-	//public GameObject gameManager;
 	public bool destinationReached;
 
 	private Vector3 fp;   //First touch position
@@ -27,19 +25,86 @@ public class Player : MonoBehaviour {
 	{
 		if (playerInstance == null)
 			playerInstance = this;
-		//selectiveDisplay = GameObject.Find("SelectiveDisplay");
 	}
 
 	private void Start()
 	{
-		//gameManager = GameObject.Find("GameManager");
-		dragDistance = Screen.height * 15 / 100; //dragDistance is 15% height of the screen
+		dragDistance = Screen.height * 0.1f; //dragDistance is 15% height of the screen
 	}
 
 	private void Update()
 	{
-		#region UserPCInput
-		if (canControl)
+        #region MobileInput
+        if (canControl)
+        {
+            if (Input.touchCount == 1) // user is touching the screen with a single touch
+            {
+                Debug.Log("Touched!");
+                Touch touch = Input.GetTouch(0); // get the touch
+                if (touch.phase == TouchPhase.Began) //check for the first touch
+                {
+                    fp = touch.position;
+                    lp = touch.position;
+                }
+                else if (touch.phase == TouchPhase.Moved) // update the last position based on where they moved
+                {
+                    lp = touch.position;
+                }
+                else if (touch.phase == TouchPhase.Ended) //check if the finger is removed from the screen
+                {
+                    lp = touch.position;  //last touch position. Ommitted if you use list
+
+                    //Check if drag distance is greater than 20% of the screen height
+                    if (Mathf.Abs(lp.x - fp.x) > dragDistance || Mathf.Abs(lp.y - fp.y) > dragDistance)
+                    {//It's a drag
+                     //check if the drag is vertical or horizontal
+                        if (Mathf.Abs(lp.x - fp.x) > Mathf.Abs(lp.y - fp.y))
+                        {   //If the horizontal movement is greater than the vertical movement...
+                            if ((lp.x > fp.x) && blockX < 3)  //If the movement was to the right)
+                            {   //Right swipe
+                                transform.Translate(Vector3.right * movingDistance);
+                                blockX += 1;
+                                GetComponent<SpriteRenderer>().flipX = false;
+                                LevelManager.LvMg.ProgressBar += stepCount;//move progress bar
+                            }
+                            else if ((lp.x < fp.x) && blockX > 0)
+                            {   //Left swipe
+                                transform.Translate(Vector3.left * movingDistance);
+                                blockX -= 1;
+                                GetComponent<SpriteRenderer>().flipX = true;
+                                LevelManager.LvMg.ProgressBar += stepCount;
+                            }
+                        }
+                        else
+                        {   //the vertical movement is greater than the horizontal movement
+                            if (lp.y > fp.y && blockY < 3)  //If the movement was up
+                            {   //Up swipe
+                                transform.Translate(Vector3.up * movingDistance);
+                                blockY += 1;
+                                LevelManager.LvMg.ProgressBar += stepCount;
+
+                            }
+                            else if (lp.y < fp.y && blockY > 0)
+                            {   //Down swipe
+                                transform.Translate(Vector3.down * movingDistance);
+                                blockY -= 1;
+                                LevelManager.LvMg.ProgressBar += stepCount;
+                            }
+                        }
+                    }
+                    else
+                    {   //It's a tap as the drag distance is less than 20% of the screen height
+                        //transform.Translate(Vector3.zero);
+                        Debug.Log("Tap");
+                    }
+                }
+            }
+        }
+        
+        #endregion
+
+        #region UserPCInput
+        if (canControl)
 		{
 			if (Input.GetKeyDown("a") && blockX > 0)
 			{
@@ -69,76 +134,9 @@ public class Player : MonoBehaviour {
 				blockY -= 1;
 				LevelManager.LvMg.ProgressBar += stepCount;
 			}
-			#region MobileInput
-			if (Input.touchCount == 1 && canControl) // user is touching the screen with a single touch
-			{
-				Debug.Log("Touched!");
-				Touch touch = Input.GetTouch(0); // get the touch
-				if (touch.phase == TouchPhase.Began) //check for the first touch
-				{
-					fp = touch.position;
-					lp = touch.position;
-				}
-				else if (touch.phase == TouchPhase.Moved) // update the last position based on where they moved
-				{
-					lp = touch.position;
-				}
-				else if (touch.phase == TouchPhase.Ended) //check if the finger is removed from the screen
-				{
-					lp = touch.position;  //last touch position. Ommitted if you use list
-
-					//Check if drag distance is greater than 20% of the screen height
-					if (Mathf.Abs(lp.x - fp.x) > dragDistance || Mathf.Abs(lp.y - fp.y) > dragDistance)
-					{//It's a drag
-					 //check if the drag is vertical or horizontal
-						if (Mathf.Abs(lp.x - fp.x) > Mathf.Abs(lp.y - fp.y))
-						{   //If the horizontal movement is greater than the vertical movement...
-							if ((lp.x > fp.x) && blockX < 3)  //If the movement was to the right)
-							{   //Right swipe
-								transform.Translate(Vector3.right * movingDistance);
-								blockX += 1;
-								GetComponent<SpriteRenderer>().flipX = false;
-								LevelManager.LvMg.ProgressBar += stepCount;//move progress bar
-							}
-							else if ((lp.x < fp.x) && blockX > 0)
-							{   //Left swipe
-								transform.Translate(Vector3.left * movingDistance);
-								blockX -= 1;
-								GetComponent<SpriteRenderer>().flipX = true;
-								LevelManager.LvMg.ProgressBar += stepCount;
-							}
-						}
-						else
-						{   //the vertical movement is greater than the horizontal movement
-							if (lp.y > fp.y && blockY < 3)  //If the movement was up
-							{   //Up swipe
-								transform.Translate(Vector3.up * movingDistance);
-								blockY += 1;
-								LevelManager.LvMg.ProgressBar += stepCount;
-
-							}
-							else if (lp.y < fp.y && blockY > 0)
-							{   //Down swipe
-								transform.Translate(Vector3.down * movingDistance);
-								blockY -= 1;
-								LevelManager.LvMg.ProgressBar += stepCount;
-							}
-						}
-					}
-					else
-					{   //It's a tap as the drag distance is less than 20% of the screen height
-						Debug.Log("Tap");
-					}
-				}
-			}
-			#endregion
 		}
 
 		#endregion
-
-
-
-
 	}
 
 	private void OnTriggerEnter(Collider other)
@@ -244,6 +242,7 @@ public class Player : MonoBehaviour {
 
 	public IEnumerator EnablePlayerMove()
 	{
+        canControl = false;
 		yield return new WaitForSeconds(0.5f);
 		canControl = true;
 	}
