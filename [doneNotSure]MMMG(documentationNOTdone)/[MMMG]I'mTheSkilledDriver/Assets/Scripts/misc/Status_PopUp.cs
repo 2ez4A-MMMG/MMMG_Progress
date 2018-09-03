@@ -62,6 +62,7 @@ public class Status_PopUp : MonoBehaviour {
     IEnumerator SpawnPopUp(string popup_text, string playAnim)
     {
 		Player.playerInstance.canControl = false;
+		Debug.Log("Can control turn off, pop out triggered(status pop out script)");
         StatusPopup.SetActive(true);
         Text PopUpText = StatusPopup.GetComponentInChildren<Text>();
         PopUpText.text = popup_text;
@@ -72,7 +73,7 @@ public class Status_PopUp : MonoBehaviour {
 		if (!Player.playerInstance.destinationReached)
 		{
 			Player.playerInstance.canControl = true;
-			
+			Debug.Log("Can control turn on, pop out ended(status pop out script)");
 		}	
 	}
 }

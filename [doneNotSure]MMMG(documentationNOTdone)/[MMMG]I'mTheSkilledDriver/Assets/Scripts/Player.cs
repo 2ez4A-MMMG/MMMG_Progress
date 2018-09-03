@@ -157,12 +157,14 @@ public class Player : MonoBehaviour {
 			Debug.Log("TALK SHIT");
 			LevelManager.LvMg.canTalk = true;
 			canControl = false;
+			Debug.Log("Can control turn off, chat triggered(player script)");
 		}
 
 		if (other.tag == "Destination")
 		{
 			destinationReached = true;
 			canControl = false;
+			Debug.Log("Can control turn off, destination reached(player script)");
 			Destroy(other.gameObject);
 			Debug.Log("You've reached ur destination");
 			
@@ -240,5 +242,9 @@ public class Player : MonoBehaviour {
 		Status_PopUp.statusMg.AddExtraTips(finalTips);
 	}
 
-
+	public IEnumerator EnablePlayerMove()
+	{
+		yield return new WaitForSeconds(0.5f);
+		canControl = true;
+	}
 }

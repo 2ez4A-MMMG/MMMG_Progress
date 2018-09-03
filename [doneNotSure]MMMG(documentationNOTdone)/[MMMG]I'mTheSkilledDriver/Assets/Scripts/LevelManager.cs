@@ -208,8 +208,11 @@ public class LevelManager : MonoBehaviour {
             Debug.Log("customerselected()-> board.setActive true");
             BoardManager.boardManagerInstance.playerP.SetActive(true);
             Player.playerInstance.canControl = true;
-        }
+			Debug.Log("Can control turn on, when customer enter the car(level manager)");
+		}
 	}
+
+	
 
     public IEnumerator AfterRideProcess()
     {
