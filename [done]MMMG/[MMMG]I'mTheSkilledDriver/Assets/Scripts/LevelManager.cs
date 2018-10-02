@@ -45,10 +45,29 @@ public class LevelManager : MonoBehaviour {
 
     private bool dayStartRunning;
     private bool dayEnding;
+    private bool afterTutorialOnce = false;
 
 	public GameObject selectiveDisplay;
     public bool gamePaused;
     void Awake () {
+        //if cannot reteive saved day count, set a new one
+        if (!PlayerPrefs.HasKey("DayCount"))
+        {
+            PlayerPrefs.SetInt("DayCount", 1);
+            Day = PlayerPrefs.GetInt("DayCount");
+        }
+        else { Day = PlayerPrefs.GetInt("DayCount"); }
+
+        //same goes for money earned
+        if (!PlayerPrefs.HasKey("MoneyEarned"))
+        {
+            PlayerPrefs.SetInt("MoneyEarned", 0);
+            Money = 0;
+        }
+        else { Money = PlayerPrefs.GetInt("MoneyEarned"); }
+
+        if (PlayerPrefs.HasKey("GameStatus")) { PlayerPrefs.DeleteKey("GameStatus"); }
+
         //set tutorial count
         if (!PlayerPrefs.HasKey("TutorialDone") || PlayerPrefs.GetString("TutorialDone") == "false")
         {
@@ -57,42 +76,43 @@ public class LevelManager : MonoBehaviour {
             gamePaused = true;
         }
         else
+        {
             gamePaused = false;
-        //PlayerPrefs.SetInt("BadEndCount", 4);
+            afterTutorialOnce = true;
+        }
+        //PlayerPrefs.SetInt("BadEndCount", 4);  
+	}
+
+    private void Start()
+    {
         LvMg = this;
         roadMoveSpeed = 0;
         canTalk = false;
         GameClear = GameOver = false;
-        //if cannot reteive saved day count, set a new one
-        if (!PlayerPrefs.HasKey("DayCount")) {
-            PlayerPrefs.SetInt("DayCount", 1);
-            Day = PlayerPrefs.GetInt("DayCount");
-        } else {
-            Day = PlayerPrefs.GetInt("DayCount");
-        }
-        //same goes for money earned
-        if (!PlayerPrefs.HasKey("MoneyEarned")) {
-            PlayerPrefs.SetInt("MoneyEarned", 0);
-            Money = 0;
-        } else {
-            Money = PlayerPrefs.GetInt("MoneyEarned");
-        }
-        if (PlayerPrefs.HasKey("GameStatus"))
-        {
-            PlayerPrefs.DeleteKey("GameStatus");
-        }
+       
         if (!BeforeLvDayDisplay.activeSelf)
             BeforeLvDayDisplay.SetActive(true);
         Text BeforeDayDisplayText = BeforeLvDayDisplay.GetComponent<Text>();
         BeforeDayDisplayText.text = "Day " + Day.ToString();
         if (PlayerPrefs.GetInt("BadEndCount") != 5)
-            StartCoroutine(dayStart());
-        BeforeLvDayDisplay.SetActive(false);
+            StartCoroutine(DayStart());
         selectiveDisplay = GameObject.Find("SelectiveDisplay");
-	}
-	
-	// Update is called once per frame
-	void Update () {
+    }
+
+    // Update is called once per frame
+    void Update () {
+
+        if (afterTutorialOnce)
+        {
+            Start();
+            afterTutorialOnce = false;
+        }
+
+        if (BeforeLvDayDisplay.activeSelf)
+        {
+            Animator beforeDayDisplayAnim = BeforeLvDayDisplay.GetComponent<Animator>();
+            if (!beforeDayDisplayAnim.GetCurrentAnimatorStateInfo(0).IsName("DayTextDisplay")) { BeforeLvDayDisplay.SetActive(false); }
+        }
         DayDisplay.text = Day.ToString();
         MoneyDisplay.text = "$ " + Money.ToString();
 
@@ -136,7 +156,7 @@ public class LevelManager : MonoBehaviour {
             Time.timeScale = 1;
     }
 
-    public IEnumerator dayStart()
+    public IEnumerator DayStart()
     {
         dayStartRunning = true;
         yield return new WaitForSeconds(0.5f);
